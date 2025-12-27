@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
         body {
             min-height: 100vh;
@@ -286,8 +292,57 @@
         .content-section.active {
             display: block;
         }
+
+        /* Playlist UI */
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px
+        }
+
+        .add-btn {
+            background: #9b59b6;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            color: #fff;
+            cursor: pointer
+        }
+
+        .playlist-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .playlist-item {
+            background: rgba(255, 255, 255, .08);
+            padding: 14px 18px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: grab
+        }
+
+        .playlist-item.dragging {
+            opacity: .4
+        }
+
+        .playlist-actions button {
+            background: none;
+            border: none;
+            color: #71b7e6;
+            cursor: pointer;
+            margin-left: 10px
+        }
     </style>
 </head>
+
 <body>
     <div class="sidebar">
         <div class="profile-section">
@@ -323,32 +378,38 @@
                     </div>
                     <div class="albums-grid">
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);">
+                            </div>
                             <div class="album-title">Angel Of Evil</div>
                             <div class="album-artist">Kuo Zhi Jian</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);">
+                            </div>
                             <div class="album-title">The Sky</div>
                             <div class="album-artist">Luo</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #da70d6, #ee82ee);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #da70d6, #ee82ee);">
+                            </div>
                             <div class="album-title">Love Story</div>
                             <div class="album-artist">Tabor Swift</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #ffa500, #ff6347);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #ffa500, #ff6347);">
+                            </div>
                             <div class="album-title">Cow</div>
                             <div class="album-artist">Miah Marcusa</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #9370db, #ba55d3);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #9370db, #ba55d3);">
+                            </div>
                             <div class="album-title">For You</div>
                             <div class="album-artist">Xie Ting Feng</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #32cd32, #228b22);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #32cd32, #228b22);">
+                            </div>
                             <div class="album-title">Jungle</div>
                             <div class="album-artist">Linda Liu</div>
                         </div>
@@ -357,17 +418,22 @@
 
                 <!-- Other sections (placeholder) -->
                 <div id="radio" class="content-section">
-                    <h2 style="font-size: 32px; text-align: center; margin-top: 100px;">Radio FM Stations Coming Soon...</h2>
+                    <h2 style="font-size: 32px; text-align: center; margin-top: 100px;">Radio FM Stations Coming Soon...
+                    </h2>
                 </div>
 
                 <div id="liked" class="content-section">
                     <h2 style="font-size: 32px; text-align: center; margin-top: 100px;">Your Liked Songs</h2>
                 </div>
 
+                <!-- MY PLAYLIST -->
                 <div id="my-playlist" class="content-section">
-                    <h2 style="font-size: 32px; text-align: center; margin-top: 100px;">My Playlists</h2>
+                    <div class="section-title">
+                        My Playlist
+                        <button class="add-btn" onclick="addPlaylist('my')">+ Create</button>
+                    </div>
+                    <ul id="my-list" class="playlist-list"></ul>
                 </div>
-
                 <div id="your-list" class="content-section">
                     <h2 style="font-size: 32px; text-align: center; margin-top: 100px;">Your Custom List</h2>
                 </div>
@@ -378,7 +444,8 @@
                 <div class="recent-right-title">Recent</div>
                 <div class="recent-right-list">
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">Always you</div>
                             <div class="recent-right-artist">Four Years Strong</div>
@@ -388,7 +455,8 @@
                     </div>
 
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">But now sad</div>
                             <div class="recent-right-artist">Warkin Singer</div>
@@ -398,7 +466,8 @@
                     </div>
 
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff4500, #ff8c00);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff4500, #ff8c00);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">Come here</div>
                             <div class="recent-right-artist">Day Singer</div>
@@ -408,7 +477,8 @@
                     </div>
 
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #9932cc, #da70d6);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #9932cc, #da70d6);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">Finally with you</div>
                             <div class="recent-right-artist">Get Singer</div>
@@ -441,7 +511,7 @@
             // localStorage.removeItem('user');
             window.location.href = '../index.html';
         }
-        
+
 
         // Sidebar navigation functionality
         const navItems = document.querySelectorAll('.nav-item');
@@ -472,7 +542,73 @@
             });
         });
 
-       
+        /* Playlist Logic */
+        const STORAGE = 'playlists_data';
+        let playlists = JSON.parse(localStorage.getItem(STORAGE)) || {
+            liked: [], my: [], your: []
+        };
+
+        function save() { localStorage.setItem(STORAGE, JSON.stringify(playlists)); }
+
+        function render(type) {
+            const map = {
+                liked: 'liked-list',
+                my: 'my-list',
+                your: 'your-list-ul'
+            };
+            const ul = document.getElementById(map[type]);
+            ul.innerHTML = '';
+            playlists[type].forEach((name, i) => {
+                const li = document.createElement('li');
+                li.className = 'playlist-item';
+                li.draggable = true;
+                li.dataset.index = i;
+                li.innerHTML = `
+            <span>${name}</span>
+            <div class="playlist-actions">
+            <button onclick="editPlaylist('${type}',${i})">Edit</button>
+            <button onclick="deletePlaylist('${type}',${i})">Delete</button>
+            </div>`;
+                drag(li, type);
+                ul.appendChild(li);
+            });
+        }
+
+        function addPlaylist(type) {
+            const name = prompt('Playlist name');
+            if (!name) return;
+            playlists[type].push(name);
+            save(); render(type);
+        }
+        function editPlaylist(type, i) {
+            const n = prompt('Edit name', playlists[type][i]);
+            if (!n) return;
+            playlists[type][i] = n;
+            save(); render(type);
+        }
+        function deletePlaylist(type, i) {
+            if (!confirm('Delete playlist?')) return;
+            playlists[type].splice(i, 1);
+            save(); render(type);
+        }
+
+        /* Drag & Drop */
+        function drag(item, type) {
+            item.addEventListener('dragstart', () => item.classList.add('dragging'));
+            item.addEventListener('dragend', () => {
+                item.classList.remove('dragging');
+                save(); render(type);
+            });
+            item.addEventListener('dragover', e => e.preventDefault());
+            item.addEventListener('drop', () => {
+                const d = document.querySelector('.dragging');
+                const from = d.dataset.index;
+                const to = item.dataset.index;
+                [playlists[type][from], playlists[type][to]] =
+                    [playlists[type][to], playlists[type][from]];
+            });
+        }
     </script>
 </body>
+
 </html>
