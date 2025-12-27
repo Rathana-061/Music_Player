@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
         body {
             min-height: 100vh;
@@ -17,10 +23,74 @@
             overflow: hidden;
         }
 
+        /* .sidebar {
+            width: 260px;
+            background: #000;
+            padding: 20px;
+            position: relative;
+            height: 100vh;
+        } */
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            margin-bottom: 30px;
+        }
+
+        .profile-pic {
+            width: 45px;
+            height: 45px;
+            background: #1db954;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-greeting {
+            font-size: 14px;
+        }
+
+        /* ===== DROPDOWN ===== */
+
+        .profile-dropdown {
+            position: absolute;
+            top: 200px;
+            left: 20px;
+            width: 250px;
+            background: #282828;
+            border-radius: 8px;
+            display: none;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+        }
+
+        .profile-dropdown.active {
+            display: block;
+            z-index: 1000;
+        }
+
+        .dropdown-item {
+            padding: 14px 16px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .dropdown-item:hover {
+            background: #3a3a3a;
+        }
+
+        .dropdown-item.logout {
+            border-top: 1px solid #444;
+            color: #ff5c5c;
+        }
+
         /* Left Sidebar */
         .sidebar {
             width: 280px;
-            background: linear-gradient(to bottom, #1a1a2e, #16213e);
             padding: 40px 20px;
             display: flex;
             flex-direction: column;
@@ -288,12 +358,30 @@
         }
     </style>
 </head>
+
 <body>
     <div class="sidebar">
-        <div class="profile-section">
-            <div class="profile-pic" id="profilePic">S</div>
-            <div class="user-greeting" id="userName">Hello, Susan! 👋</div>
-            <!-- <div class="premium-badge">Premium</div> -->
+        <div class="sidebar">
+
+            <div class="profile-container">
+                <!-- ______________________________Profile Section______________________________ -->
+                <div class="profile-section" id="profileToggle">
+                    <div class="profile-pic" id="profilePic">S</div>
+                    <div class="user-greeting" id="userName">Hello, Susan! 👋</div>
+                </div>
+
+                <!-- ________________________________Dropdown_____________________________________ -->
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="dropdown-item" onclick="showSection('account')">Account</div>
+                    <div class="dropdown-item" onclick="showSection('profile')">Profile</div>
+                    <div class="dropdown-item" onclick="showSection('premium')">Upgrade to Premium</div>
+                    <div class="dropdown-item" onclick="showSection('download')">Download</div>
+                    <div class="dropdown-item" onclick="showSection('support')">Support</div>
+                    <div class="dropdown-item" onclick="showSection('settings')">Settings</div>
+                    <div class="dropdown-item logout" onclick="logout()">Log out</div>
+                </div>
+            </div>
+
         </div>
 
         <div class="nav-menu">
@@ -315,7 +403,7 @@
 
         <div class="content-wrapper">
             <div class="left-content">
-                <!-- Your Zone (Home) -->
+                <!-- ______________________________Your Zone (Home)______________________________ -->
                 <div id="your-zone" class="content-section active">
                     <div class="section-title">
                         Albums
@@ -323,41 +411,48 @@
                     </div>
                     <div class="albums-grid">
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);">
+                            </div>
                             <div class="album-title">Angel Of Evil</div>
                             <div class="album-artist">Kuo Zhi Jian</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);">
+                            </div>
                             <div class="album-title">The Sky</div>
                             <div class="album-artist">Luo</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #da70d6, #ee82ee);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #da70d6, #ee82ee);">
+                            </div>
                             <div class="album-title">Love Story</div>
                             <div class="album-artist">Tabor Swift</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #ffa500, #ff6347);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #ffa500, #ff6347);">
+                            </div>
                             <div class="album-title">Cow</div>
                             <div class="album-artist">Miah Marcusa</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #9370db, #ba55d3);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #9370db, #ba55d3);">
+                            </div>
                             <div class="album-title">For You</div>
                             <div class="album-artist">Xie Ting Feng</div>
                         </div>
                         <div class="album-item">
-                            <div class="album-cover" style="background: linear-gradient(135deg, #32cd32, #228b22);"></div>
+                            <div class="album-cover" style="background: linear-gradient(135deg, #32cd32, #228b22);">
+                            </div>
                             <div class="album-title">Jungle</div>
                             <div class="album-artist">Linda Liu</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Other sections (placeholder) -->
+                <!-- ________________________________Other sections (placeholder)________________________ -->
                 <div id="radio" class="content-section">
-                    <h2 style="font-size: 32px; text-align: center; margin-top: 100px;">Radio FM Stations Coming Soon...</h2>
+                    <h2 style="font-size: 32px; text-align: center; margin-top: 100px;">Radio FM Stations Coming Soon...
+                    </h2>
                 </div>
 
                 <div id="liked" class="content-section">
@@ -373,12 +468,13 @@
                 </div>
             </div>
 
-            <!-- Right Sidebar: Recent / Play Queue (always visible) -->
+            <!-- ____________________________________Right Sidebar: Recent / Play Queue (always visible)____________________________ -->
             <div class="right-content">
                 <div class="recent-right-title">Recent</div>
                 <div class="recent-right-list">
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff69b4, #ff1493);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">Always you</div>
                             <div class="recent-right-artist">Four Years Strong</div>
@@ -388,7 +484,8 @@
                     </div>
 
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #40e0d0, #20b2aa);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">But now sad</div>
                             <div class="recent-right-artist">Warkin Singer</div>
@@ -398,7 +495,8 @@
                     </div>
 
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff4500, #ff8c00);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #ff4500, #ff8c00);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">Come here</div>
                             <div class="recent-right-artist">Day Singer</div>
@@ -408,7 +506,8 @@
                     </div>
 
                     <div class="recent-right-item">
-                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #9932cc, #da70d6);"></div>
+                        <div class="recent-right-cover" style="background: linear-gradient(135deg, #9932cc, #da70d6);">
+                        </div>
                         <div class="recent-right-info">
                             <div class="recent-right-song">Finally with you</div>
                             <div class="recent-right-artist">Get Singer</div>
@@ -421,6 +520,56 @@
         </div>
     </div>
 
+    <script>
+        const profileToggle = document.getElementById("profileToggle");
+        const profileDropdown = document.getElementById("profileDropdown");
+
+        // Toggle dropdown visibility
+        profileToggle.addEventListener("click", (e) => {
+            e.stopPropagation(); // prevent closing immediately
+            profileDropdown.classList.toggle("active");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", (e) => {
+            if (!profileToggle.contains(e.target) && !profileDropdown.contains(e.target)) {
+                profileDropdown.classList.remove("active");
+            }
+        });
+
+        // Redirect to the corresponding HTML file
+        function showSection(section) {
+            switch (section) {
+                case 'account':
+                    window.location.href = "profile/Account.html";
+                    break;
+                case 'profile':
+                    window.location.href = "profile/Profile.html";
+                    break;
+                case 'premium':
+                    window.location.href = "profile/Upgrade to Premium.html";
+                    break;
+                case 'download':
+                    window.location.href = "profile/Download.html";
+                    break;
+                case 'support':
+                    window.location.href = "profile/Support.html";
+                    break;
+                case 'settings':
+                    window.location.href = "profile/Setting.html";
+                    break;
+                default:
+                    console.warn("Section not found:", section);
+            }
+        }
+
+        // Logout function
+        function logout() {
+            // Example: Firebase logout
+            // auth.signOut().then(() => window.location.href = "login.html");
+            alert("Logging out...");
+        }
+    </script>
     <script>
 
         const userData = JSON.parse(localStorage.getItem('user'));
@@ -441,7 +590,7 @@
             // localStorage.removeItem('user');
             window.location.href = '../index.html';
         }
-        
+
 
         // Sidebar navigation functionality
         const navItems = document.querySelectorAll('.nav-item');
@@ -472,7 +621,8 @@
             });
         });
 
-       
+
     </script>
 </body>
+
 </html>

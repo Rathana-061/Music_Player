@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download</title>
+    <style>
+        /* ===== GENERAL RESET ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            line-height: 1.5;
+            overflow-x: hidden;
+        }
+
+        /* ===== BUTTONS ===== */
+        button,
+        .btn {
+            cursor: pointer;
+            border: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 12px 24px;
+            transition: 0.3s;
+        }
+
+        .btn-dark {
+            background: #2e2e2e;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn-dark:hover {
+            background: #444;
+        }
+
+        /* ===== HERO BANNER ===== */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 80vh;
+            background: url('https://i.pinimg.com/1200x/a9/db/77/a9db778a7f62f3b51097f3f33b4871f9.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero .download-btn {
+            margin-top: 20px;
+        }
+
+        .hero .download-link {
+            margin-top: 12px;
+            font-size: 14px;
+            text-decoration: underline;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* iPhone image */
+        .hero img.iphone {
+            position: absolute;
+            left: 20px;
+            bottom: 20px;
+            width: 120px;
+            border-radius: 20px;
+        }
+
+        /* ===== MOBILE & TABLET PROMOTION ===== */
+        .mobile-section {
+            background: #fff;
+            color: #000;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .mobile-section h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .mobile-section p {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 24px;
+        }
+
+        .app-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .app-badges img {
+            height: 60px;
+        }
+
+        /* ===== MULTI-DEVICE BANNER ===== */
+        .devices-banner {
+            /* background: linear-gradient(135deg, #6b0f9c, #a60fc3); */
+            background: url('https://i.pinimg.com/1200x/9d/c1/7d/9dc17d596bd7d4ba152a1861913f4534.jpg');
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .devices-banner h2 {
+            font-size: 36px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 16px;
+        }
+
+        .devices-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: white;
+            font-size: 16px;
+        }
+
+        .devices-list span {
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .devices-list span:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding: 40px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: #919496;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column ul li a:hover {
+            color: #1db954;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #919496;
+            text-decoration: none;
+            font-size: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .language-selector {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #fff;
+            font-size: 0.875rem;
+            padding: 8px 12px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-selector:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .copyright {
+            color: #919496;
+            font-size: 0.75rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .social-icon:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: #fff;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .menu-item {
+                padding: 15px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- _____________________________HERO BANNER_________________________________ -->
+    <section class="hero">
+
+        <h1>Download Spotify</h1>
+        <p>Play millions of songs and podcasts on your device.</p>
+        <button class="btn btn-dark">🎵 Download from the Microsoft Store</button>
+        <div class="download-link">Download directly from Spotify.</div>
+    </section>
+
+    <!-- ____________________MOBILE & TABLET PROMOTION__________________________ -->
+    <section class="mobile-section">
+        <h2>Listen on mobile and tablet, too</h2>
+        <p>Using Spotify on your phone or tablet is free, easy, and fun.</p>
+        <div class="app-badges">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="App Store">
+            <img src="https://i.pinimg.com/1200x/1f/2d/ce/1f2dce5a903c1ffe0edf3f3e8b1afa43.jpg" alt="Google Play">
+            <img src="https://i.pinimg.com/736x/aa/d8/77/aad877d3a68b275cc717684324c15d77.jpg" alt="Microsoft Store">
+        </div>
+    </section>
+
+    <!-- ___________________________MULTI-DEVICE BANNER_____________________________ -->
+    <section class="devices-banner">
+        <h2>One account, listen everywhere</h2>
+        <div class="devices-list">
+            <span>Mobile</span> •
+            <span>Computer</span> •
+            <span>Tablet</span> •
+            <span>Car</span> •
+            <span>PlayStation®</span> •
+            <span>Xbox</span> •
+            <span>TV</span> •
+            <span>Speaker</span> •
+            <span>Web Player</span>
+        </div>
+    </section>
+
+    <!-- ______________________________FOOTER___________________________________ -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Jobs</a></li>
+                    <li><a href="#">For the Record</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Communities</h3>
+                <ul>
+                    <li><a href="#">For Artists</a></li>
+                    <li><a href="#">Developers</a></li>
+                    <li><a href="#">Advertising</a></li>
+                    <li><a href="#">Investors</a></li>
+                    <li><a href="#">Vendors</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Useful Links</h3>
+                <ul>
+                    <li><a href="#">Support</a></li>
+                    <li><a href="#">Web Player</a></li>
+                    <li><a href="#">Free Mobile App</a></li>
+                    <li><a href="#">Import your music</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Spotify Plans</h3>
+                <ul>
+                    <li><a href="#">Premium Individual</a></li>
+                    <li><a href="#">Premium Duo</a></li>
+                    <li><a href="#">Premium Family</a></li>
+                    <li><a href="#">Premium Student</a></li>
+                    <li><a href="#">Spotify Free</a></li>
+                </ul>
+                <div class="social-icons">
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                        </svg>
+                    </div>
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                    </div>
+                    <div class="social-icon">
+                        <svg viewBox="0 0 24 24">
+                            <path
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#">Legal</a>
+                <a href="#">Safety & Privacy Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies</a>
+                <a href="#">About Ads</a>
+                <a href="#">Accessibility</a>
+            </div>
+            <div class="footer-right">
+                <div class="language-selector">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path
+                            d="M8.5 1a6.5 6.5 0 100 13 6.5 6.5 0 000-13zm4.5 6.5c0 .876-.223 1.706-.616 2.422l-1.118-1.118A3.5 3.5 0 008.999 5.5V4.022a5.5 5.5 0 013.5 3.456zm-5.5-5.477v1.456a3.5 3.5 0 00-2.31 3.303l-1.119 1.119A5.5 5.5 0 017.5 2.023zm-4.5 6.455a5.5 5.5 0 003.546 3.922v-1.456a3.5 3.5 0 01-2.31-3.303l-1.237 1.237zm5.5 5.5v-1.455a3.5 3.5 0 002.268-3.264l1.118-1.118A5.5 5.5 0 018.5 13.977z" />
+                    </svg>
+                    <span>Cambodia (English)</span>
+                </div>
+                <div class="copyright">© 2025 Spotify AB</div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
