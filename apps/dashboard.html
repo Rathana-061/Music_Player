@@ -620,6 +620,17 @@
                 pageTitle.textContent = sectionTitles[sectionId] || 'Music App';
             });
         });
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const section = item.dataset.section;
+
+                // redirect to playlist page
+                if (section === 'my-playlist') {
+                    window.location.href = 'playlist.html';
+                    // change to your real playlist file name
+                }
+            });
+        });
 
 
     </script>
