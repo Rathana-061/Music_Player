@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,15 +14,77 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
-        html, body {
+
+        html,
+        body {
             height: 100%;
             background: #0f0f1e;
             color: #fff;
             overflow: hidden;
         }
+
         body {
             display: flex;
         }
+
+        .main-layout,
+        .app-container,
+        .main-area {
+            padding-top: 60px;
+        }
+
+        /* Full-Width Top Navbar */
+        .top-nav-full {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #000;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            z-index: 1000;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-logo {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .app-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-profile {
+            background: #1a1a1a;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .user-profile:hover {
+            background: #2a2a2a;
+        }
+
+
         /* Sidebar */
         .sidebar {
             width: 280px;
@@ -35,7 +98,10 @@
             position: relative;
             z-index: 10;
         }
+
+
         .profile-section {
+            margin-top: 30px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -44,6 +110,7 @@
             cursor: pointer;
             position: relative;
         }
+
         .profile-pic {
             width: 100px;
             height: 100px;
@@ -60,13 +127,16 @@
             background-size: cover;
             background-position: center;
         }
+
         .profile-section:hover .profile-pic {
             transform: scale(1.08);
         }
+
         .user-greeting {
             font-size: 20px;
             font-weight: 600;
         }
+
         .premium-badge {
             background: linear-gradient(90deg, #9b59b6, #71b7e6);
             padding: 4px 12px;
@@ -74,6 +144,7 @@
             font-size: 12px;
             margin-top: 8px;
         }
+
         /* Profile Dropdown */
         .profile-dropdown {
             position: absolute;
@@ -92,28 +163,36 @@
             transition: all 0.3s ease;
             z-index: 1000;
         }
+
         .profile-dropdown.active {
             opacity: 1;
             visibility: visible;
             transform: translateX(-50%) translateY(0);
             pointer-events: all;
         }
+
         .dropdown-item {
             padding: 14px 20px;
             font-size: 14px;
             cursor: pointer;
             transition: background 0.3s;
         }
+
         .dropdown-item:hover {
             background: #3a3a3a;
         }
+
         .dropdown-item.logout {
             border-top: 1px solid #444;
             color: #ff5c5c;
         }
+
         .dropdown-item.logout:hover {
             background: rgba(231, 76, 60, 0.3);
         }
+
+
+
         /* Navigation */
         .nav-menu {
             flex: 1;
@@ -122,6 +201,7 @@
             gap: 10px;
             margin-top: 20px;
         }
+
         .nav-item {
             padding: 14px 20px;
             border-radius: 12px;
@@ -129,13 +209,16 @@
             cursor: pointer;
             transition: all 0.3s;
         }
+
         .nav-item:hover {
             background: rgba(255, 255, 255, 0.1);
         }
+
         .nav-item.active {
             background: rgba(155, 89, 182, 0.3);
             font-weight: 600;
         }
+
         .logout-btn {
             padding: 12px 30px;
             background: rgba(255, 255, 255, 0.1);
@@ -149,10 +232,16 @@
             width: 80%;
             margin-top: 20px;
         }
+
         .logout-btn:hover {
             background: rgba(231, 76, 60, 0.4);
             transform: scale(1.05);
         }
+
+        .hidden {
+            display: none !important;
+        }
+
         /* Main Area */
         .main-area {
             flex: 1;
@@ -160,6 +249,7 @@
             flex-direction: column;
             position: relative;
         }
+
         .top-bar {
             padding: 30px;
             display: flex;
@@ -168,9 +258,11 @@
             border-bottom: 1px solid #222;
             flex-shrink: 0;
         }
+
         .top-bar h1 {
             font-size: 28px;
         }
+
         .search-bar {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -182,9 +274,11 @@
             font-size: 15px;
             outline: none;
         }
+
         .search-bar::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
+
         .content-wrapper {
             flex: 1;
             padding: 0 30px;
@@ -192,6 +286,7 @@
             display: flex;
             gap: 30px;
         }
+
         .left-content {
             flex: 1;
             min-width: 0;
@@ -199,17 +294,21 @@
             padding-bottom: 120px;
             padding-right: 10px;
         }
+
         .left-content::-webkit-scrollbar {
             width: 8px;
         }
+
         .left-content::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 4px;
         }
+
         .left-content::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.3);
             border-radius: 4px;
         }
+
         .right-content {
             width: 380px;
             background: rgba(255, 255, 255, 0.03);
@@ -224,21 +323,26 @@
             display: flex;
             flex-direction: column;
         }
+
         .recent-right-list {
             flex: 1;
             overflow-y: auto;
             padding-right: 8px;
         }
+
         .recent-right-list::-webkit-scrollbar {
             width: 6px;
         }
+
         .recent-right-list::-webkit-scrollbar-track {
             background: transparent;
         }
+
         .recent-right-list::-webkit-scrollbar-thumb {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 3px;
         }
+
         .section-title {
             font-size: 24px;
             font-weight: 600;
@@ -248,6 +352,7 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .upload-btn {
             background: #1db954;
             color: #000;
@@ -259,9 +364,11 @@
             font-size: 14px;
             transition: background 0.3s;
         }
+
         .upload-btn:hover {
             background: #1ed760;
         }
+
         .uploaded-table {
             width: 100%;
             border-collapse: separate;
@@ -269,6 +376,7 @@
             margin-top: 20px;
             margin-bottom: 60px;
         }
+
         .uploaded-table th {
             text-align: left;
             padding: 12px 16px;
@@ -278,6 +386,7 @@
             text-transform: uppercase;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
+
         .uploaded-table tr {
             background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
@@ -286,14 +395,17 @@
             position: relative;
             overflow: hidden;
         }
+
         .uploaded-table tr:hover {
             background: rgba(255, 255, 255, 0.12);
             transform: scale(1.02);
         }
+
         .uploaded-table td {
             padding: 16px;
             vertical-align: middle;
         }
+
         .uploaded-song-cover {
             width: 50px;
             height: 50px;
@@ -302,21 +414,25 @@
             background-size: cover;
             background-position: center;
         }
+
         .uploaded-song-title {
             font-size: 16px;
             font-weight: 500;
         }
+
         .uploaded-song-artist {
             font-size: 14px;
             opacity: 0.7;
             margin-top: 4px;
         }
+
         .albums-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
             gap: 24px;
             margin-bottom: 60px;
         }
+
         .album-item {
             cursor: pointer;
             transition: transform 0.3s ease;
@@ -324,9 +440,11 @@
             border-radius: 16px;
             overflow: hidden;
         }
+
         .album-item:hover {
             transform: translateY(-8px);
         }
+
         .album-cover {
             width: 100%;
             aspect-ratio: 1;
@@ -337,19 +455,25 @@
             background-position: center;
             position: relative;
         }
+
         .album-item::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 60px;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 60px;
             background: rgba(0, 0, 0, 0);
             border-radius: 16px;
             transition: background 0.3s ease;
             z-index: 1;
             pointer-events: none;
         }
+
         .album-item:hover::before {
             background: rgba(0, 0, 0, 0.5);
         }
+
         .play-hover-btn {
             position: absolute;
             bottom: 55px;
@@ -370,26 +494,32 @@
             z-index: 2;
             pointer-events: none;
         }
+
         .album-item:hover .play-hover-btn {
             opacity: 1;
             transform: translateX(-50%) translateY(0);
         }
+
         .album-item[data-playlist] .play-hover-btn {
             display: none !important;
         }
+
         .album-item[data-playlist]::before,
         .album-item[data-playlist]:hover::before {
             background: rgba(0, 0, 0, 0.4) !important;
         }
+
         .album-title {
             font-size: 15px;
             font-weight: 500;
         }
+
         .album-artist {
             font-size: 13px;
             opacity: 0.7;
             margin-top: 4px;
         }
+
         .playlist-actions {
             position: absolute;
             top: 8px;
@@ -399,11 +529,13 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
+
         .album-item:hover .playlist-actions {
             opacity: 1;
         }
+
         .playlist-btn {
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             border: none;
             color: white;
             width: 32px;
@@ -415,15 +547,18 @@
             align-items: center;
             justify-content: center;
         }
+
         .playlist-btn.delete {
             background: rgba(231, 76, 60, 0.8);
         }
+
         .recent-right-title {
             font-size: 24px;
             font-weight: 600;
             text-align: center;
             margin-bottom: 20px;
         }
+
         .recent-right-item {
             display: flex;
             align-items: center;
@@ -435,9 +570,11 @@
             margin-bottom: 10px;
             cursor: pointer;
         }
+
         .recent-right-item:hover {
             background: rgba(255, 255, 255, 0.12);
         }
+
         .recent-right-cover {
             width: 50px;
             height: 50px;
@@ -447,19 +584,23 @@
             flex-shrink: 0;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
+
         .recent-right-song {
             font-size: 15px;
             font-weight: 500;
         }
+
         .recent-right-artist {
             font-size: 13px;
             opacity: 0.7;
         }
+
         .recent-duration {
             font-size: 12px;
             opacity: 0.6;
             margin-top: 4px;
         }
+
         .player-bar {
             position: absolute;
             bottom: 0;
@@ -475,15 +616,20 @@
             z-index: 100;
             justify-content: space-between;
         }
-        .player-left, .player-center, .player-right {
+
+        .player-left,
+        .player-center,
+        .player-right {
             display: flex;
             align-items: center;
         }
+
         .player-left {
             width: 30%;
             gap: 14px;
             min-width: 300px;
         }
+
         .current-cover-small {
             width: 56px;
             height: 56px;
@@ -492,18 +638,22 @@
             background-size: cover;
             background-position: center;
         }
+
         .current-song-small {
             font-weight: 500;
         }
+
         .current-artist-small {
             font-size: 13px;
             opacity: 0.7;
         }
+
         .player-center {
             flex: 1;
             justify-content: center;
             gap: 30px;
         }
+
         .player-control-btn {
             background: none;
             border: none;
@@ -513,9 +663,11 @@
             opacity: 0.8;
             transition: opacity 0.3s;
         }
+
         .player-control-btn:hover {
             opacity: 1;
         }
+
         .play-pause-large {
             width: 50px;
             height: 50px;
@@ -529,6 +681,7 @@
             align-items: center;
             justify-content: center;
         }
+
         .add-to-playlist-btn {
             width: 40px;
             height: 40px;
@@ -542,11 +695,13 @@
             transition: all 0.3s ease;
             position: relative;
         }
+
         .add-to-playlist-btn:hover {
             background: #1db954;
             transform: scale(1.15);
             opacity: 1;
         }
+
         .add-to-playlist-btn::after {
             content: 'Add to Playlist';
             position: absolute;
@@ -566,6 +721,7 @@
             z-index: 100;
             margin-bottom: 10px;
         }
+
         .add-to-playlist-btn::before {
             content: '';
             position: absolute;
@@ -579,14 +735,17 @@
             transition: opacity 0.3s ease;
             margin-bottom: 4px;
         }
+
         .add-to-playlist-btn:hover::after,
         .add-to-playlist-btn:hover::before {
             opacity: 1;
             visibility: visible;
         }
+
         .add-to-playlist-btn:hover::after {
             transform: translateX(-50%) translateY(-4px);
         }
+
         .progress-section {
             display: flex;
             align-items: center;
@@ -594,6 +753,7 @@
             width: 40%;
             min-width: 400px;
         }
+
         .progress-bar-thin {
             flex: 1;
             height: 4px;
@@ -602,25 +762,30 @@
             overflow: hidden;
             cursor: pointer;
         }
+
         .progress-fill-thin {
             height: 100%;
             width: 0%;
             background: #1db954;
             transition: width 0.1s;
         }
+
         .time-label {
             font-size: 13px;
             min-width: 40px;
         }
+
         .volume-control {
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .volume-slider-thin {
             width: 100px;
             accent-color: #1db954;
         }
+
         .expand-btn {
             background: none;
             border: none;
@@ -631,15 +796,19 @@
             transition: opacity 0.3s;
             padding: 10px;
         }
+
         .expand-btn:hover {
             opacity: 1;
         }
+
         .content-section {
             display: none;
         }
+
         .content-section.active {
             display: block;
         }
+
         .big-player-overlay {
             position: fixed;
             top: 0;
@@ -655,10 +824,12 @@
             opacity: 0;
             transition: opacity 0.4s ease;
         }
+
         .big-player-overlay.active {
             display: flex;
             opacity: 1;
         }
+
         .big-player-content {
             width: 90%;
             max-width: 800px;
@@ -669,6 +840,7 @@
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
             position: relative;
         }
+
         .big-player-close {
             position: absolute;
             top: 20px;
@@ -678,9 +850,11 @@
             opacity: 0.7;
             transition: opacity 0.3s;
         }
+
         .big-player-close:hover {
             opacity: 1;
         }
+
         .big-album-cover {
             width: 320px;
             height: 320px;
@@ -691,16 +865,19 @@
             margin: 0 auto 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
+
         .big-song-title {
             font-size: 36px;
             font-weight: 600;
             margin-bottom: 8px;
         }
+
         .big-song-artist {
             font-size: 24px;
             opacity: 0.8;
             margin-bottom: 40px;
         }
+
         .big-player-controls {
             display: flex;
             align-items: center;
@@ -708,6 +885,7 @@
             gap: 30px;
             margin: 30px 0;
         }
+
         .big-player-btn {
             background: none;
             border: none;
@@ -717,10 +895,12 @@
             opacity: 0.8;
             transition: all 0.3s;
         }
+
         .big-player-btn:hover {
             opacity: 1;
             transform: scale(1.1);
         }
+
         .big-play-pause {
             width: 80px;
             height: 80px;
@@ -734,15 +914,18 @@
             cursor: pointer;
             transition: transform 0.3s;
         }
+
         .big-play-pause:hover {
             transform: scale(1.1);
         }
+
         .big-progress-section {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-top: 20px;
         }
+
         .big-progress-bar {
             flex: 1;
             height: 8px;
@@ -751,19 +934,25 @@
             overflow: hidden;
             cursor: pointer;
         }
+
         .big-progress-fill {
             height: 100%;
             width: 0%;
             background: #1db954;
             transition: width 0.1s;
         }
+
         .big-time-label {
             font-size: 16px;
             min-width: 50px;
         }
+
         .modal-overlay {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px);
             display: none;
@@ -771,9 +960,11 @@
             justify-content: center;
             z-index: 2000;
         }
+
         .modal-overlay.active {
             display: flex;
         }
+
         .modal-content {
             background: #1e1e2e;
             border-radius: 16px;
@@ -783,6 +974,7 @@
             text-align: center;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
+
         .playlist-cover-preview {
             width: 160px;
             height: 160px;
@@ -791,13 +983,14 @@
             background-size: cover;
             background-position: center;
             margin: 0 auto 20px;
-            border: 3px dashed rgba(255,255,255,0.2);
+            border: 3px dashed rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 48px;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255, 255, 255, 0.3);
         }
+
         .modal-input {
             width: 100%;
             padding: 14px 16px;
@@ -809,8 +1002,9 @@
             margin-bottom: 24px;
             outline: none;
         }
+
         .change-cover-btn {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border: none;
             color: #fff;
             padding: 10px 20px;
@@ -819,14 +1013,17 @@
             margin-bottom: 20px;
             font-size: 14px;
         }
+
         .change-cover-btn:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
+
         .modal-buttons {
             display: flex;
             gap: 16px;
             justify-content: center;
         }
+
         .modal-btn {
             padding: 12px 28px;
             border: none;
@@ -837,30 +1034,42 @@
             transition: all 0.3s;
             min-width: 120px;
         }
+
         .cancel-btn {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
         }
+
         .cancel-btn:hover {
             background: rgba(255, 255, 255, 0.2);
         }
-        .create-btn, .save-btn {
+
+        .create-btn,
+        .save-btn {
             background: #1db954;
             color: #000;
         }
-        .create-btn:hover, .save-btn:hover {
+
+        .create-btn:hover,
+        .save-btn:hover {
             background: #1ed760;
         }
+
         .delete-btn {
             background: #e74c3c;
             color: #fff;
         }
+
         .delete-btn:hover {
             background: #c0392b;
         }
+
         .edit-profile-modal {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             display: none;
@@ -868,9 +1077,11 @@
             justify-content: center;
             z-index: 3000;
         }
+
         .edit-profile-modal.active {
             display: flex;
         }
+
         .edit-profile-content {
             background: #1e1e2e;
             border-radius: 20px;
@@ -880,6 +1091,7 @@
             text-align: center;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
         }
+
         .edit-profile-pic-preview {
             width: 120px;
             height: 120px;
@@ -893,8 +1105,9 @@
             align-items: center;
             justify-content: center;
             font-size: 50px;
-            color: rgba(255,255,255,0.4);
+            color: rgba(255, 255, 255, 0.4);
         }
+
         .edit-name-input {
             width: 100%;
             padding: 14px 16px;
@@ -907,8 +1120,9 @@
             margin: 20px 0;
             outline: none;
         }
+
         .change-pic-btn {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             border: none;
             color: #fff;
             padding: 10px 20px;
@@ -917,12 +1131,17 @@
             font-size: 14px;
             margin-bottom: 20px;
         }
+
         .change-pic-btn:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
         }
+
         #addToPlaylistModal {
             position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(10px);
             display: none;
@@ -930,9 +1149,11 @@
             justify-content: center;
             z-index: 3000;
         }
+
         #addToPlaylistModal.active {
             display: flex;
         }
+
         .add-playlist-content {
             background: #1e1e2e;
             border-radius: 20px;
@@ -942,27 +1163,31 @@
             text-align: center;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
         }
+
         .add-playlist-title {
             font-size: 24px;
             font-weight: 600;
             margin-bottom: 20px;
         }
+
         .add-playlist-current-song {
             font-size: 16px;
             opacity: 0.9;
             margin-bottom: 20px;
             padding: 12px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 12px;
         }
+
         .playlist-list {
             max-height: 300px;
             overflow-y: auto;
             margin-bottom: 30px;
         }
+
         .playlist-option {
             padding: 16px;
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             margin-bottom: 10px;
             cursor: pointer;
@@ -972,19 +1197,23 @@
             justify-content: space-between;
             align-items: center;
         }
+
         .playlist-option:hover {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             transform: translateY(-2px);
         }
+
         .playlist-option .song-count {
             font-size: 13px;
             opacity: 0.7;
         }
+
         .no-playlists {
             color: #888;
             font-style: italic;
             padding: 20px;
         }
+
         /* Featured Artists Styles */
         .artists-grid {
             display: grid;
@@ -992,14 +1221,17 @@
             gap: 30px;
             margin: 40px 0 60px;
         }
+
         .artist-item {
             text-align: center;
             cursor: pointer;
             transition: transform 0.3s ease;
         }
+
         .artist-item:hover {
             transform: translateY(-10px);
         }
+
         .artist-avatar {
             width: 160px;
             height: 160px;
@@ -1011,23 +1243,28 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             border: 4px solid rgba(255, 255, 255, 0.1);
         }
+
         .artist-name {
             font-size: 18px;
             font-weight: 600;
         }
+
         .artist-genre {
             font-size: 14px;
             opacity: 0.7;
             margin-top: 6px;
         }
+
         .artist-detail-view {
             display: none;
             width: 100%;
             margin-top: 30px;
         }
+
         .artist-detail-view.active {
             display: block;
         }
+
         .artist-header {
             display: flex;
             align-items: center;
@@ -1037,6 +1274,7 @@
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
         }
+
         .artist-header-avatar {
             width: 200px;
             height: 200px;
@@ -1045,15 +1283,18 @@
             background-position: center;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
         }
+
         .artist-header-info h2 {
             font-size: 36px;
             font-weight: 600;
         }
+
         .artist-header-info p {
             font-size: 18px;
             opacity: 0.8;
             margin-top: 10px;
         }
+
         .back-to-artists {
             background: rgba(255, 255, 255, 0.1);
             border: none;
@@ -1063,6 +1304,7 @@
             font-size: 14px;
             margin-bottom: 20px;
         }
+
         .back-to-artists:hover {
             background: rgba(255, 255, 255, 0.2);
         }
@@ -1079,9 +1321,10 @@
         #seeMoreBtn.expanded:hover {
             background: #e74c3c !important;
         }
+
         #seeMoreBtn:hover {
             background: #1ed760 !important;
-            
+
         }
 
         /*See more Artists */
@@ -1089,43 +1332,83 @@
             display: none;
         }
 
-        #seeMoreBtn.expanded, #seeMoreArtistsBtn.expanded {
+        #seeMoreBtn.expanded,
+        #seeMoreArtistsBtn.expanded {
             background: #c0392b !important;
         }
-        #seeMoreBtn.expanded:hover, #seeMoreArtistsBtn.expanded:hover {
+
+        #seeMoreBtn.expanded:hover,
+        #seeMoreArtistsBtn.expanded:hover {
             background: #e74c3c !important;
         }
-        #seeMoreBtn:hover, #seeMoreArtistsBtn:hover {
+
+        #seeMoreBtn:hover,
+        #seeMoreArtistsBtn:hover {
             background: #1ed760 !important;
         }
 
         @media (max-width: 1024px) {
-            .right-content { display: none; }
-            .content-wrapper { padding: 20px; }
+            .right-content {
+                display: none;
+            }
+
+            .content-wrapper {
+                padding: 20px;
+            }
         }
+
         @media (max-width: 768px) {
-            .sidebar { width: 80px; padding: 20px 10px; align-items: center; }
-            .user-greeting, .nav-item, .logout-btn { display: none; }
-            .search-bar { width: 200px; }
-            .top-bar { flex-direction: column; gap: 20px; align-items: flex-start; }
+            .sidebar {
+                width: 80px;
+                padding: 20px 10px;
+                align-items: center;
+            }
+
+            .user-greeting,
+            .nav-item,
+            .logout-btn {
+                display: none;
+            }
+
+            .search-bar {
+                width: 200px;
+            }
+
+            .top-bar {
+                flex-direction: column;
+                gap: 20px;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
+
 <body>
+
+    <!-- Full-Width Top Navigation Bar -->
+    <div class="top-nav-full">
+        <div class="nav-left">
+            <img src="/apps/img/logo-music.jpg" alt="My Music App Logo" class="app-logo">
+            <span class="app-name">AudioLux App</span>
+        </div>
+       
+    </div>
+
+
     <!-- Sidebar -->
     <div class="sidebar">
         <div class="profile-section" id="profileToggle">
-            <div class="profile-pic" id="profilePic">S</div>
-            <div class="user-greeting" id="userName">Hello, Susan! 👋</div>
+            <div class="profile-pic" id="profilePic"></div>
+            <div class="user-greeting" id="userName"></div>
             <div class="premium-badge">Premium</div>
         </div>
         <div class="profile-dropdown" id="profileDropdown">
-            <div class="dropdown-item" id="editProfileItem">Edit Profile</div>
-            <div class="dropdown-item">Account</div>
-            <div class="dropdown-item">Upgrade to Premium</div>
-            <div class="dropdown-item">Download</div>
-            <div class="dropdown-item">Support</div>
-            <div class="dropdown-item">Settings</div>
+            <div class="dropdown-item" onclick="showSection('account')" id="editProfileItem">Edit Profile</div>
+            <div class="dropdown-item" onclick="showSection('account')">Account</div>
+            <div class="dropdown-item" onclick="showSection('premium')">Upgrade to Premium</div>
+            <div class="dropdown-item" onclick="showSection('download')">Download</div>
+            <div class="dropdown-item" onclick="showSection('support')">Support</div>
+            <div class="dropdown-item" onclick="showSection('settings')">Settings</div>
             <div class="dropdown-item logout">Log out</div>
         </div>
         <div class="nav-menu">
@@ -1146,42 +1429,52 @@
                 <div id="your-zone" class="content-section active">
                     <div class="section-title">
                         Sample Songs
-    
+
                         <!-- See More / See Less Button -->
                         <div style="text-align: center; margin: 40px 0;">
                             <button id="seeMoreBtn" class="upload-btn" style="background: #1db954;">See More ▼</button>
                         </div>
                     </div>
-                    
+
 
                     <div class="albums-grid" id="sampleSongsGrid">
                         <!-- Initial 4 visible songs -->
-                        <div class="album-item" data-song="../songs/Tena-1.mp3" data-title="បងក្រ" data-artist="Tena" data-cover="https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg">
-                            <div class="album-cover" style="background-image: url('https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg');">
+                        <div class="album-item" data-song="../songs/Tena-1.mp3" data-title="បងក្រ" data-artist="Tena"
+                            data-cover="https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg">
+                            <div class="album-cover"
+                                style="background-image: url('https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">បងក្រ</div>
                             <div class="album-artist">Tena</div>
                         </div>
 
-                        <div class="album-item" data-song="../songs/Vannda-1.mp3" data-title="Time to Rise" data-artist="Vannda" data-cover="https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg">
-                            <div class="album-cover" style="background-image: url('https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg');">
+                        <div class="album-item" data-song="../songs/Vannda-1.mp3" data-title="Time to Rise"
+                            data-artist="Vannda" data-cover="https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg">
+                            <div class="album-cover"
+                                style="background-image: url('https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">Time to Rise</div>
                             <div class="album-artist">Vannda</div>
                         </div>
 
-                        <div class="album-item" data-song="../songs/Preab Sovath-1.mp3" data-title="Lady (She's gone)" data-artist="Preab Sovath" data-cover="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s">
-                            <div class="album-cover" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s');">
+                        <div class="album-item" data-song="../songs/Preab Sovath-1.mp3" data-title="Lady (She's gone)"
+                            data-artist="Preab Sovath"
+                            data-cover="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s">
+                            <div class="album-cover"
+                                style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">Lady (She's gone)</div>
                             <div class="album-artist">Preab Sovath</div>
                         </div>
 
-                        <div class="album-item" data-song="../songs/ស្រដៀងសង្សារ.mp3" data-title="ស្រដៀងសង្សារ" data-artist="Nevrmind Band" data-cover="https://i.ytimg.com/vi/oo4fDJszsZ4/maxresdefault.jpg">
-                            <div class="album-cover" style="background-image: url('https://i.ytimg.com/vi/oo4fDJszsZ4/maxresdefault.jpg');">
+                        <div class="album-item" data-song="../songs/ស្រដៀងសង្សារ.mp3" data-title="ស្រដៀងសង្សារ"
+                            data-artist="Nevrmind Band"
+                            data-cover="https://i.ytimg.com/vi/oo4fDJszsZ4/maxresdefault.jpg">
+                            <div class="album-cover"
+                                style="background-image: url('https://i.ytimg.com/vi/oo4fDJszsZ4/maxresdefault.jpg');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">ស្រដៀងសង្សារ</div>
@@ -1189,40 +1482,50 @@
                         </div>
 
                         <!-- Hidden extra songs (shown when "See More" is clicked) -->
-                        <div class="album-item extra-song hidden" data-song="../songs/see you again.mp3" data-title="See you again" data-artist="Wiz Khalifa" data-cover="https://i.ytimg.com/vi/RgKAFK5djSk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAqRAcXvNmNXcNEleJusP3Ljgzqug">
-                            <div class="album-cover" style="background-image: url('https://i.ytimg.com/vi/RgKAFK5djSk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAqRAcXvNmNXcNEleJusP3Ljgzqug');">
+                        <div class="album-item extra-song hidden" data-song="../songs/see you again.mp3"
+                            data-title="See you again" data-artist="Wiz Khalifa"
+                            data-cover="https://i.ytimg.com/vi/RgKAFK5djSk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAqRAcXvNmNXcNEleJusP3Ljgzqug">
+                            <div class="album-cover"
+                                style="background-image: url('https://i.ytimg.com/vi/RgKAFK5djSk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAqRAcXvNmNXcNEleJusP3Ljgzqug');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">See you again</div>
                             <div class="album-artist">Wiz Khalifa</div>
                         </div>
 
-                        <div class="album-item extra-song hidden" data-song="../songs/Home.mp3" data-title="Home" data-artist="Machine Gun Kelly" data-cover="https://i.ytimg.com/vi/IumYMCllMsM/hqdefault.jpg">
-                            <div class="album-cover" style="background-image: url('https://i.ytimg.com/vi/IumYMCllMsM/hqdefault.jpg');">
+                        <div class="album-item extra-song hidden" data-song="../songs/Home.mp3" data-title="Home"
+                            data-artist="Machine Gun Kelly"
+                            data-cover="https://i.ytimg.com/vi/IumYMCllMsM/hqdefault.jpg">
+                            <div class="album-cover"
+                                style="background-image: url('https://i.ytimg.com/vi/IumYMCllMsM/hqdefault.jpg');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">Home</div>
                             <div class="album-artist">Machine Gun Kelly</div>
                         </div>
 
-                        <div class="album-item extra-song hidden" data-song="../songs/Someone You Loved.mp3" data-title="Someone You Loved" data-artist="Lewis Capaldi" data-cover="https://i.ytimg.com/vi/bCuhuePlP8o/sddefault.jpg?v=688b3275">
-                            <div class="album-cover" style="background-image: url('https://i.ytimg.com/vi/bCuhuePlP8o/sddefault.jpg?v=688b3275');">
+                        <div class="album-item extra-song hidden" data-song="../songs/Someone You Loved.mp3"
+                            data-title="Someone You Loved" data-artist="Lewis Capaldi"
+                            data-cover="https://i.ytimg.com/vi/bCuhuePlP8o/sddefault.jpg?v=688b3275">
+                            <div class="album-cover"
+                                style="background-image: url('https://i.ytimg.com/vi/bCuhuePlP8o/sddefault.jpg?v=688b3275');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">Someone You Loved</div>
                             <div class="album-artist">Lewis Capaldi</div>
                         </div>
 
-                        <div class="album-item extra-song hidden" data-song="../songs/Why Not Me.mp3" data-title="Why Not Me" data-artist="Enrique Iglesias" data-cover="https://i.pinimg.com/564x/d9/50/09/d95009983ed3a7ee227db500e01a1feb.jpg">
-                            <div class="album-cover" style="background-image: url('https://i.pinimg.com/564x/d9/50/09/d95009983ed3a7ee227db500e01a1feb.jpg');">
+                        <div class="album-item extra-song hidden" data-song="../songs/Why Not Me.mp3"
+                            data-title="Why Not Me" data-artist="Enrique Iglesias"
+                            data-cover="https://i.pinimg.com/564x/d9/50/09/d95009983ed3a7ee227db500e01a1feb.jpg">
+                            <div class="album-cover"
+                                style="background-image: url('https://i.pinimg.com/564x/d9/50/09/d95009983ed3a7ee227db500e01a1feb.jpg');">
                                 <div class="play-hover-btn">▶</div>
                             </div>
                             <div class="album-title">Why Not Me</div>
                             <div class="album-artist">Enrique Iglesias</div>
                         </div>
                     </div>
-
-                    
 
                     <!-- Featured Artists -->
                     <div id="artistsSection">
@@ -1232,46 +1535,59 @@
                         </div>
                         <div class="artists-grid" id="artistsGrid">
                             <div class="artist-item" data-artist="Vanda">
-                                <div class="artist-avatar" style="background-image: url('https://www.top10asia.org/wp-content/uploads/2022/09/301590217_802401490937910_8824734863151066433_n.jpg');"></div>
+                                <div class="artist-avatar"
+                                    style="background-image: url('https://www.top10asia.org/wp-content/uploads/2022/09/301590217_802401490937910_8824734863151066433_n.jpg');">
+                                </div>
                                 <div class="artist-name">Vanda</div>
                                 <div class="artist-genre">Pop • Cambodia</div>
                             </div>
                             <div class="artist-item" data-artist="Tena">
-                                <div class="artist-avatar" style="background-image: url('https://i.scdn.co/image/ab6761610000e5ebb267fa0c58a49a460fbb44cd');"></div>
+                                <div class="artist-avatar"
+                                    style="background-image: url('https://i.scdn.co/image/ab6761610000e5ebb267fa0c58a49a460fbb44cd');">
+                                </div>
                                 <div class="artist-name">Tena</div>
                                 <div class="artist-genre">Pop • Cambodia</div>
                             </div>
                             <div class="artist-item" data-artist="Preab Sovath">
-                                <div class="artist-avatar" style="background-image: url('https://i.scdn.co/image/ab67616d00001e02e5c32e2fa4e4b8b7bc25225f');"></div>
+                                <div class="artist-avatar"
+                                    style="background-image: url('https://i.scdn.co/image/ab67616d00001e02e5c32e2fa4e4b8b7bc25225f');">
+                                </div>
                                 <div class="artist-name">Preab Sovath</div>
                                 <div class="artist-genre">Pop • Cambodia</div>
                             </div>
 
                             <!-- Extra artists - hidden initially -->
                             <div class="artist-item extra-artist hidden" data-artist="Chhom Nimol">
-                                <div class="artist-avatar" style="background-image: url('https://i.scdn.co/image/ab6761610000e5eb8e7d8b6d9c0b7f8e9f');"></div>
+                                <div class="artist-avatar"
+                                    style="background-image: url('https://i.scdn.co/image/ab6761610000e5eb8e7d8b6d9c0b7f8e9f');">
+                                </div>
                                 <div class="artist-name">Chhom Nimol</div>
                                 <div class="artist-genre">Cambodian Fusion</div>
                             </div>
                             <div class="artist-item extra-artist hidden" data-artist="Laura Mam">
-                                <div class="artist-avatar" style="background-image: url('https://i.scdn.co/image/ab6761610000e5ebexample2');"></div>
+                                <div class="artist-avatar"
+                                    style="background-image: url('https://i.scdn.co/image/ab6761610000e5ebexample2');">
+                                </div>
                                 <div class="artist-name">Laura Mam</div>
                                 <div class="artist-genre">Khmer Pop / R&B</div>
                             </div>
                             <div class="artist-item extra-artist hidden" data-artist="Sokha Teap">
-                                <div class="artist-avatar" style="background-image: url('https://via.placeholder.com/160?text=Sokha');"></div>
+                                <div class="artist-avatar"
+                                    style="background-image: url('https://via.placeholder.com/160?text=Sokha');"></div>
                                 <div class="artist-name">Sokha Teap</div>
                                 <div class="artist-genre">Traditional • Modern</div>
                             </div>
                             <div class="artist-item extra-artist hidden" data-artist="Kak Channthy">
-                                <div class="artist-avatar" style="background-image: url('https://via.placeholder.com/160?text=Channthy');"></div>
+                                <div class="artist-avatar"
+                                    style="background-image: url('https://via.placeholder.com/160?text=Channthy');">
+                                </div>
                                 <div class="artist-name">Kak Channthy</div>
                                 <div class="artist-genre">Indie • Khmer Rock</div>
                             </div>
 
 
 
-                            
+
                         </div>
                     </div>
 
@@ -1311,7 +1627,8 @@
                         <button class="upload-btn" id="createPlaylistBtn">+ New Playlist</button>
                     </div>
                     <div class="albums-grid" id="playlistsGrid">
-                        <p style="grid-column: 1 / -1; text-align:center; color:#888; padding:40px;">No playlists yet. Create one!</p>
+                        <p style="grid-column: 1 / -1; text-align:center; color:#888; padding:40px;">No playlists yet.
+                            Create one!</p>
                     </div>
                 </div>
             </div>
@@ -1373,7 +1690,8 @@
             <h3 id="modalTitle">Create New Playlist</h3>
             <div class="playlist-cover-preview" id="coverPreview">🎵</div>
             <button class="change-cover-btn" id="changeCoverBtn">Change Cover Image</button>
-            <input type="text" class="modal-input" id="playlistNameInput" placeholder="Enter playlist name..." maxlength="50">
+            <input type="text" class="modal-input" id="playlistNameInput" placeholder="Enter playlist name..."
+                maxlength="50">
             <div class="modal-buttons">
                 <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
                 <button class="modal-btn create-btn" id="saveBtn">Create</button>
@@ -1384,7 +1702,8 @@
     <div class="modal-overlay" id="deletePlaylistModal">
         <div class="modal-content">
             <h3 style="color:#e74c3c;">Delete Playlist?</h3>
-            <p id="deletePlaylistName" style="margin:20px 0; font-size:16px; opacity:0.9;">Are you sure? This action cannot be undone.</p>
+            <p id="deletePlaylistName" style="margin:20px 0; font-size:16px; opacity:0.9;">Are you sure? This action
+                cannot be undone.</p>
             <div class="modal-buttons">
                 <button class="modal-btn cancel-btn" id="cancelDeleteBtn">Cancel</button>
                 <button class="modal-btn delete-btn" id="confirmDeleteBtn">Delete</button>
@@ -1435,16 +1754,72 @@
     <audio id="audioPlayer" preload="metadata"></audio>
 
     <script>
+        // Get user from localStorage
+        const user = JSON.parse(localStorage.getItem('user'));
+
+        // If no user found, redirect to login
+        if (!user) {
+            window.location.href = '../index.html';
+        }
+
+        // Show the user's name
+        document.getElementById('userName').textContent = `Hello, ${user.name}!`;
+
+        // Optional: show a placeholder profile pic if you want
+        document.getElementById('profilePic').style.background = "url('assets/default-avatar.png') center/cover no-repeat";
         // Fallback cover
         function getFallbackCover() {
             return 'url("https://media.istockphoto.com/id/1504173168/photo/futuristic-energy-sphere-on-black-background-representing-ai-and-future-technologies-3d.jpg?s=612x612&w=0&k=20&c=lNbKE07EEb7bpsKTf1Pmm1enLnfwooepNLsSa4hAAE4=")';
         }
 
+        const profileToggle = document.getElementById("profileToggle");
+        const profileDropdown = document.getElementById("profileDropdown");
+
+        // Toggle dropdown
+        profileToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            profileDropdown.classList.toggle("active");
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener("click", () => {
+            profileDropdown.classList.remove("active");
+        });
+
+        // Redirect pages
+        function showSection(section) {
+            profileDropdown.classList.remove("active"); // close dropdown
+
+            switch (section) {
+                case 'account':
+                    window.location.href = "profile/Account.html";
+                    break;
+                case 'profile':
+                    window.location.href = "profile/Profile.html";
+                    break;
+                case 'premium':
+                    window.location.href = "profile/Upgrade to Premium.html";
+                    break;
+                case 'download':
+                    window.location.href = "profile/Download.html";
+                    break;
+                case 'support':
+                    window.location.href = "profile/Support.html";
+                    break;
+                case 'settings':
+                    window.location.href = "profile/Setting.html";
+                    break;
+                default:
+                    console.warn("Section not found:", section);
+            }
+        }
+
+
         // Profile Edit Logic
         const profilePic = document.getElementById('profilePic');
         const userNameEl = document.getElementById('userName');
         const editProfileModal = document.getElementById('editProfileModal');
-        const editProfilePicPreview = document.getElementById('editProfilePicPreview');
+        // const editProfilePicPreview = document.getElementById('editProfilePicPreview');
         const editNameInput = document.getElementById('editNameInput');
         const changeProfilePicBtn = document.getElementById('changeProfilePicBtn');
         const profilePicInput = document.getElementById('profilePicInput');
@@ -1453,7 +1828,7 @@
         const editProfileItem = document.getElementById('editProfileItem');
 
         function loadProfile() {
-            const savedName = localStorage.getItem('userDisplayName') || 'Susan';
+            const savedName = localStorage.getItem('userDisplayName') || 'User';
             const savedPic = localStorage.getItem('userProfilePic');
             userNameEl.textContent = `Hello, ${savedName}! 👋`;
             editNameInput.value = savedName;
@@ -1509,37 +1884,6 @@
 
         loadProfile();
 
-        // Dropdown & Logout
-        const profileToggle = document.getElementById('profileToggle');
-        const profileDropdown = document.getElementById('profileDropdown');
-        const sidebarLogoutBtn = document.getElementById('sidebarLogoutBtn');
-
-        profileToggle.addEventListener('click', (e) => {
-            e.stopPropagation();
-            profileDropdown.classList.toggle('active');
-        });
-
-        document.addEventListener('click', () => profileDropdown.classList.remove('active'));
-        profileDropdown.addEventListener('click', (e) => e.stopPropagation());
-
-        profileDropdown.querySelectorAll('.dropdown-item').forEach(item => {
-            item.addEventListener('click', () => {
-                if (item.classList.contains('logout')) performLogout();
-                profileDropdown.classList.remove('active');
-            });
-        });
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.addEventListener('click', () => {
-                const section = item.dataset.section;
-
-                // redirect to playlist page
-                if (section === 'my-playlist') {
-                    window.location.href = 'playlist.html';
-                    // change to your real playlist file name
-                }
-            });
-        });
-
         sidebarLogoutBtn.addEventListener('click', performLogout);
 
         function performLogout() {
@@ -1547,6 +1891,59 @@
                 window.location.href = '../index.html';
             }
         }
+
+        // searcg bar 
+
+        const searchInput = document.querySelector(".search-bar");
+        const songsGrid = document.getElementById("sampleSongsGrid");
+
+        // Get all songs once
+        const allSongs = Array.from(songsGrid.querySelectorAll(".album-item"));
+
+        /* 🔀 Shuffle function */
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        /* 🔍 Search + Random */
+        searchInput.addEventListener("input", () => {
+            const keyword = searchInput.value.toLowerCase().trim();
+
+            // Reset grid
+            songsGrid.innerHTML = "";
+
+            // Filter songs
+            let matchedSongs = allSongs.filter(song => {
+                const title = song.dataset.title.toLowerCase();
+                const artist = song.dataset.artist.toLowerCase();
+                return title.includes(keyword) || artist.includes(keyword);
+            });
+
+            // Shuffle matched results
+            shuffleArray(matchedSongs);
+
+            // Show results
+            matchedSongs.forEach(song => {
+                song.classList.remove("hidden");
+                songsGrid.appendChild(song);
+            });
+
+            // If search empty → show default order
+            if (keyword === "") {
+                songsGrid.innerHTML = "";
+                allSongs.forEach(song => {
+                    songsGrid.appendChild(song);
+                    if (song.classList.contains("extra-song")) {
+                        song.classList.add("hidden");
+                    }
+                });
+            }
+        });
+
+
 
         // Audio Player Logic
         const audio = document.getElementById('audioPlayer');
@@ -1599,7 +1996,7 @@
                 if (!file.type.startsWith('audio/')) continue;
                 const objectUrl = URL.createObjectURL(file);
                 jsmediatags.read(file, {
-                    onSuccess: function(tag) {
+                    onSuccess: function (tag) {
                         const tags = tag.tags;
                         const title = tags.title || file.name.replace(/\.[^/.]+$/, "");
                         const artist = tags.artist || "Unknown Artist";
@@ -1607,41 +2004,37 @@
                         if (tags.picture) {
                             let base64String = "";
                             const data = tags.picture.data;
-                            for (let i = 0; i < data.length; i++) {
-                                base64String += String.fromCharCode(data[i]);
-                            }
-                            coverUrl = "data:" + tags.picture.format + ";base64," + btoa(base64String);
+                            for (let i = 0; i < data.length; i++) { base64String += String.fromCharCode(data[i]); } coverUrl = "data:" +
+                                tags.picture.format + ";base64," + btoa(base64String);
+                        } const coverStyle = coverUrl ? `url('${coverUrl}')` :
+                            getFallbackCover(); createSongItem(objectUrl, title, artist, coverStyle, coverUrl, container, true);
+                    }, onError:
+                        function () {
+                            const coverStyle = getFallbackCover(); createSongItem(objectUrl, file.name.replace(/\.[^/.]+$/, ""
+                            ), "Unknown Artist", coverStyle, "", container, true);
                         }
-                        const coverStyle = coverUrl ? `url('${coverUrl}')` : getFallbackCover();
-                        createSongItem(objectUrl, title, artist, coverStyle, coverUrl, container, true);
-                    },
-                    onError: function() {
-                        const coverStyle = getFallbackCover();
-                        createSongItem(objectUrl, file.name.replace(/\.[^/.]+$/, ""), "Unknown Artist", coverStyle, "", container, true);
-                    }
                 });
-            }
-            e.target.value = '';
-        });
-
-        function createSongItem(url, title, artist, coverStyle, coverUrl, container, prepend = false) {
-            const isTable = container.id === 'uploadedSongsBody';
-            if (isTable) {
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td><div class="uploaded-song-cover" style="background-image: ${coverStyle};"></div></td>
-                    <td>
-                        <div class="uploaded-song-title">${title}</div>
-                        <div class="uploaded-song-artist">${artist}</div>
-                    </td>
-                    <td>${artist}</td>
-                `;
-                row.onclick = () => playSong({url, title, artist, cover: coverStyle, coverUrl});
-                if (prepend) container.prepend(row);
-                else container.appendChild(row);
-                const placeholder = container.querySelector('td[colspan]');
-                if (placeholder) placeholder.parentElement.remove();
-            }
+            } e.target.value = '';
+        }); function
+            createSongItem(url, title, artist, coverStyle, coverUrl, container, prepend = false) {
+            const
+                isTable = container.id === 'uploadedSongsBody'; if (isTable) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = ` <td>
+        <div class="uploaded-song-cover" style="background-image: ${coverStyle};"></div>
+        </td>
+        <td>
+            <div class="uploaded-song-title">${title}</div>
+            <div class="uploaded-song-artist">${artist}</div>
+        </td>
+        <td>${artist}</td>
+        `;
+                    row.onclick = () => playSong({ url, title, artist, cover: coverStyle, coverUrl });
+                    if (prepend) container.prepend(row);
+                    else container.appendChild(row);
+                    const placeholder = container.querySelector('td[colspan]');
+                    if (placeholder) placeholder.parentElement.remove();
+                }
         }
 
         function playSong(song) {
@@ -1710,13 +2103,13 @@
             const item = document.createElement('div');
             item.className = 'recent-right-item';
             item.innerHTML = `
-                <div class="recent-right-cover" style="background-image: ${cover};"></div>
-                <div style="flex:1;">
-                    <div class="recent-right-song">${title}</div>
-                    <div class="recent-right-artist">${artist}</div>
-                    <div class="recent-duration">${duration}</div>
-                </div>
-            `;
+        <div class="recent-right-cover" style="background-image: ${cover};"></div>
+        <div style="flex:1;">
+            <div class="recent-right-song">${title}</div>
+            <div class="recent-right-artist">${artist}</div>
+            <div class="recent-duration">${duration}</div>
+        </div>
+        `;
             item.onclick = () => playSong(fullSongData);
             recentList.prepend(item);
             if (recentList.children.length > 10) {
@@ -1754,7 +2147,7 @@
         if (seeMoreBtn) {
             seeMoreBtn.addEventListener('click', () => {
                 const isExpanded = seeMoreBtn.classList.toggle('expanded');
-                
+
                 extraSongs.forEach(song => {
                     song.classList.toggle('hidden', !isExpanded);
                 });
@@ -1814,14 +2207,14 @@
                 item.dataset.playlist = 'true';
                 const cover = pl.coverUrl ? `url('${pl.coverUrl}')` : getFallbackCover();
                 item.innerHTML = `
-                    <div class="album-cover" style="background-image: ${cover};"></div>
-                    <div class="album-title">${pl.name}</div>
-                    <div class="album-artist">${pl.songs.length} songs</div>
-                    <div class="playlist-actions">
-                        <button class="playlist-btn edit" data-index="${i}">✏️</button>
-                        <button class="playlist-btn delete" data-index="${i}">🗑️</button>
-                    </div>
-                `;
+        <div class="album-cover" style="background-image: ${cover};"></div>
+        <div class="album-title">${pl.name}</div>
+        <div class="album-artist">${pl.songs.length} songs</div>
+        <div class="playlist-actions">
+            <button class="playlist-btn edit" data-index="${i}">✏️</button>
+            <button class="playlist-btn delete" data-index="${i}">🗑️</button>
+        </div>
+        `;
                 item.onclick = e => {
                     if (e.target.closest('.playlist-actions')) return;
                     showPlaylistSongs(pl, i);
@@ -1858,7 +2251,8 @@
             if (deleteBtn) {
                 currentEditIndex = +deleteBtn.dataset.index;
                 const pl = getPlaylists()[currentEditIndex];
-                document.getElementById('deletePlaylistName').textContent = `Are you sure you want to delete "${pl.name}"? This action cannot be undone.`;
+                document.getElementById('deletePlaylistName').textContent = `Are you sure you want to delete "${pl.name}"? This
+        action cannot be undone.`;
                 deleteModal.classList.add('active');
             }
         });
@@ -1906,15 +2300,17 @@
             deleteModal.classList.remove('active');
         };
 
-        [playlistModal, deleteModal].forEach(m => m.onclick = e => { if (e.target === m) m.classList.remove('active'); });
+        [playlistModal, deleteModal].forEach(m => m.onclick = e => {
+            if (e.target === m) m.classList.remove('active');
+        });
 
         function showPlaylistSongs(playlist, index) {
             playlistsGrid.innerHTML = `
-                <div style="grid-column:1/-1;padding:20px;background:rgba(255,255,255,0.05);border-radius:16px;">
-                    <h3>${playlist.name} (${playlist.songs.length} songs)</h3>
-                    <button class="upload-btn" style="margin-top:10px;" onclick="loadPlaylists()">← Back</button>
-                </div>
-            `;
+        <div style="grid-column:1/-1;padding:20px;background:rgba(255,255,255,0.05);border-radius:16px;">
+            <h3>${playlist.name} (${playlist.songs.length} songs)</h3>
+            <button class="upload-btn" style="margin-top:10px;" onclick="loadPlaylists()">← Back</button>
+        </div>
+        `;
             if (playlist.songs.length === 0) {
                 playlistsGrid.innerHTML += '<p style="grid-column:1/-1;text-align:center;color:#888;">Empty playlist</p>';
                 return;
@@ -1924,12 +2320,12 @@
                 const item = document.createElement('div');
                 item.className = 'album-item';
                 item.innerHTML = `
-                    <div class="album-cover" style="background-image: ${cover};">
-                        <div class="play-hover-btn">▶</div>
-                    </div>
-                    <div class="album-title">${s.title}</div>
-                    <div class="album-artist">${s.artist}</div>
-                `;
+        <div class="album-cover" style="background-image: ${cover};">
+            <div class="play-hover-btn">▶</div>
+        </div>
+        <div class="album-title">${s.title}</div>
+        <div class="album-artist">${s.artist}</div>
+        `;
                 item.onclick = () => playSong(s);
                 playlistsGrid.appendChild(item);
             });
@@ -1959,12 +2355,12 @@
                 option.className = 'playlist-option';
                 if (alreadyAdded) option.style.opacity = '0.6';
                 option.innerHTML = `
-                    <div>
-                        <div style="font-weight:500;">${playlist.name}</div>
-                        <div class="song-count">${playlist.songs.length} songs</div>
-                    </div>
-                    ${alreadyAdded ? '<span style="color:#1db954;">✓ Added</span>' : ''}
-                `;
+        <div>
+            <div style="font-weight:500;">${playlist.name}</div>
+            <div class="song-count">${playlist.songs.length} songs</div>
+        </div>
+        ${alreadyAdded ? '<span style="color:#1db954;">✓ Added</span>' : ''}
+        `;
                 if (!alreadyAdded) {
                     option.onclick = () => {
                         playlist.songs.push({
@@ -1992,28 +2388,50 @@
         // Featured Artists Data & Logic
         const artistsData = {
             "Vanda": {
-                avatar: "https://www.top10asia.org/wp-content/uploads/2022/09/301590217_802401490937910_8824734863151066433_n.jpg",
+                avatar:
+                    "https://www.top10asia.org/wp-content/uploads/2022/09/301590217_802401490937910_8824734863151066433_n.jpg",
                 genre: "Pop • Cambodia",
                 songs: [
-                    { title: "បងក្រ", url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3", cover: "https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg" },
-                    { title: "Don't Text Me When You're Drunk", url: "https://filesamples.com/samples/audio/mp3/sample3.mp3", cover: "https://i.scdn.co/image/ab67616d0000b273f0d3d66c5f3e8d281aef8b3e" }
+                    {
+                        title: "បងក្រ", url: "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3", cover:
+                            "https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg"
+                    },
+                    {
+                        title: "Don't Text Me When You're Drunk", url: "https://filesamples.com/samples/audio/mp3/sample3.mp3", cover:
+                            "https://i.scdn.co/image/ab67616d0000b273f0d3d66c5f3e8d281aef8b3e"
+                    }
                 ]
             },
             "Tena": {
                 avatar: "https://i.scdn.co/image/ab6761610000e5ebb267fa0c58a49a460fbb44cd",
                 genre: "Pop • Cambodia",
                 songs: [
-                    { title: "Time to Rise", url: "https://filesamples.com/samples/audio/mp3/sample3.mp3", cover: "https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg" },
-                    { title: "Sunroof", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", cover: "https://i.scdn.co/image/ab67616d0000b273d51d6d7b3f6d8f9d1d0d0d0d" }
+                    {
+                        title: "Time to Rise", url: "https://filesamples.com/samples/audio/mp3/sample3.mp3", cover:
+                            "https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg"
+                    },
+                    {
+                        title: "Sunroof", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", cover:
+                            "https://i.scdn.co/image/ab67616d0000b273d51d6d7b3f6d8f9d1d0d0d0d"
+                    }
                 ]
             },
             "Preab Sovath": {
                 avatar: "https://i.scdn.co/image/ab67616d00001e02e5c32e2fa4e4b8b7bc25225f",
                 genre: "Pop • Cambodia",
                 songs: [
-                    { title: "Lady (She's gone)", url: "../songs/Tena-1.mp3", cover: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s" },
-                    { title: "Perfect", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", cover: "https://i.scdn.co/image/ab67616d0000b273b0c2e8c1f1b3b3d3e3e3e3e3" },
-                    { title: "Thinking Out Loud", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", cover: "https://i.scdn.co/image/ab67616d0000b273f0f2d5d1b1d2c3d4e5f6a7b8" }
+                    {
+                        title: "Lady (She's gone)", url: "../songs/Tena-1.mp3", cover:
+                            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s"
+                    },
+                    {
+                        title: "Perfect", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", cover:
+                            "https://i.scdn.co/image/ab67616d0000b273b0c2e8c1f1b3b3d3e3e3e3e3"
+                    },
+                    {
+                        title: "Thinking Out Loud", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", cover:
+                            "https://i.scdn.co/image/ab67616d0000b273f0f2d5d1b1d2c3d4e5f6a7b8"
+                    }
                 ]
             }
         };
@@ -2038,23 +2456,23 @@
             artistsSection.style.display = 'none';
             artistDetailView.classList.add('active');
             artistHeader.innerHTML = `
-                <div class="artist-header-avatar" style="background-image: url('${data.avatar}');"></div>
-                <div class="artist-header-info">
-                    <h2>${artistName}</h2>
-                    <p>${data.genre}</p>
-                </div>
-            `;
+        <div class="artist-header-avatar" style="background-image: url('${data.avatar}');"></div>
+        <div class="artist-header-info">
+            <h2>${artistName}</h2>
+            <p>${data.genre}</p>
+        </div>
+        `;
             artistSongsGrid.innerHTML = '';
             data.songs.forEach(song => {
                 const item = document.createElement('div');
                 item.className = 'album-item';
                 item.innerHTML = `
-                    <div class="album-cover" style="background-image: url('${song.cover}');">
-                        <div class="play-hover-btn">▶</div>
-                    </div>
-                    <div class="album-title">${song.title}</div>
-                    <div class="album-artist">${artistName}</div>
-                `;
+        <div class="album-cover" style="background-image: url('${song.cover}');">
+            <div class="play-hover-btn">▶</div>
+        </div>
+        <div class="album-title">${song.title}</div>
+        <div class="album-artist">${artistName}</div>
+        `;
                 item.onclick = () => {
                     const fullSong = {
                         url: song.url,
@@ -2080,4 +2498,5 @@
         loadPlaylists();
     </script>
 </body>
+
 </html>

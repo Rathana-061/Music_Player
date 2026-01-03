@@ -1,257 +1,346 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <title>My Music App | Login/Register</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login & Register</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: "Segoe UI", sans-serif;
+        }
 
         body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #cce7ff, #f5d0fe, #ffffff);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #71b7e6, #9b59b6);
         }
 
-        .container {
-            width: 400px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            overflow: hidden;
-        }
-
-        .form-box {
+        .auth-container {
+            width: 500px;
             padding: 40px;
-            text-align: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
-        .form-box h2 {
-            font-size: 28px;
-            color: #fff;
+        .logo {
+            text-align: center;
             margin-bottom: 30px;
         }
 
-        .input-group {
+        .logo img {
+            width: 70px;
+            margin-bottom: 8px;
+            border-radius: 20px;
+        }
+
+        .logo h1 {
+            margin: 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .logo p {
+            font-size: 13px;
+            color: #666;
+        }
+
+        .form {
+            display: none;
+        }
+
+        .form.active {
+            display: block;
+        }
+
+        .form h2 {
+            text-align: center;
+            margin-bottom: 22px;
+            color: #333;
+        }
+
+        .field {
             position: relative;
-            margin: 30px 0;
+            margin-bottom: 18px;
         }
 
-        .input-group input {
+        .field label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #555;
+        }
+
+        .field input {
             width: 100%;
-            padding: 12px 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
+            padding: 12px 42px 12px 12px;
+            border-radius: 10px;
+            border: 1px solid #ddd;
             outline: none;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 16px;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.9);
         }
 
-        .input-group input::placeholder { color: rgba(255, 255, 255, 0.7); }
+        .field input:focus {
+            border-color: #a78bfa;
+        }
 
-        .input-group label {
+        .toggle-eye {
             position: absolute;
-            top: 50%; left: 15px;
-            transform: translateY(-50%);
-            color: rgba(255, 255, 255, 0.8);
-            pointer-events: none;
-            transition: 0.3s;
+            right: 12px;
+            top: 38px;
+            cursor: pointer;
+            color: #999;
         }
 
-        .input-group input:focus ~ label,
-        .input-group input:valid ~ label {
-            top: -10px; left: 10px; font-size: 12px;
-            background: linear-gradient(135deg, #71b7e6, #9b59b6);
-            padding: 0 5px;
+        .toggle-eye:hover {
+            color: #555;
         }
-
-        .error { color: #ff6b6b; font-size: 13px; margin-top: 6px; text-align: left; min-height: 18px; display: block; }
-        .success { color: #a8ffbc; font-size: 14px; margin-top: 10px; text-align: center; }
 
         button {
-            width: 100%; padding: 12px; background: #fff; border: none; border-radius: 8px;
-            font-size: 16px; font-weight: 600; color: #9b59b6; cursor: pointer; margin-top: 15px;
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #a78bfa, #f9a8d4);
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.2s;
         }
 
-        button:hover { background: #f0f0f0; }
+        button:hover {
+            opacity: 0.9;
+        }
 
-        .link { margin-top: 20px; color: #fff; }
-        .link a { color: #fff; text-decoration: underline; cursor: pointer; }
+        .switch {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
 
-        #register-form { display: none; }
+        .switch span {
+            color: #a78bfa;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .error {
+            font-size: 12px;
+            color: #e74c3c;
+            margin-top: 4px;
+        }
     </style>
 </head>
+
 <body>
-    <div class="container">
-        <!-- Login Form -->
-        <div class="form-box" id="login-form">
-            <h2>Login</h2>
-            <form id="loginForm">
-                <div class="input-group">
-                    <input type="email" id="loginEmail" required>
-                    <label>Email</label>
-                    <span class="error" id="loginEmailError"></span>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="loginPassword" required>
-                    <label>Password</label>
-                    <span class="error" id="loginPasswordError"></span>
-                </div>
-                <span class="error" id="loginGeneralError"></span>
-                <button type="submit">Login</button>
-            </form>
-            <p class="link">Don't have an account? <a onclick="switchToRegister()">Register</a></p>
+
+    <div class="auth-container">
+
+        <!-- LOGO -->
+        <div class="logo">
+            <img src="/apps/img/logo-music.jpg" alt="Music App Logo">
+            <h1>AudioLux App</h1>
+            <p>Feel the sound</p>
         </div>
 
-        <!-- Register Form -->
-        <div class="form-box" id="register-form">
+        <!-- LOGIN -->
+        <div class="form active" id="loginBox">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="field">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" required>
+                    <div class="error" id="loginEmailError"></div>
+                </div>
+
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" id="loginPassword" required>
+                    <i class="fa-solid fa-eye toggle-eye" onclick="togglePassword('loginPassword', this)"></i>
+                    <div class="error" id="loginPasswordError"></div>
+                </div>
+
+                <button type="submit">Login</button>
+            </form>
+
+            <div class="switch">
+                Don’t have an account? <span onclick="showRegister()">Register</span>
+            </div>
+        </div>
+
+        <!-- REGISTER -->
+        <div class="form" id="registerBox">
             <h2>Register</h2>
             <form id="registerForm">
-                <div class="input-group">
-                    <input type="text" id="regName" required>
+                <div class="field">
                     <label>Full Name</label>
-                    <span class="error" id="regNameError"></span>
+                    <input type="text" id="regName" required>
+                    <div class="error" id="regNameError"></div>
                 </div>
-                <div class="input-group">
-                    <input type="email" id="regEmail" required>
+
+                <div class="field">
                     <label>Email</label>
-                    <span class="error" id="regEmailError"></span>
+                    <input type="email" id="regEmail" required>
+                    <div class="error" id="regEmailError"></div>
                 </div>
-                <div class="input-group">
-                    <input type="password" id="regPassword" required>
+
+                <div class="field">
                     <label>Password</label>
-                    <span class="error" id="regPasswordError"></span>
+                    <input type="password" id="regPassword" required>
+                    <i class="fa-solid fa-eye toggle-eye" onclick="togglePassword('regPassword', this)"></i>
+                    <div class="error" id="regPasswordError"></div>
                 </div>
-                <div class="input-group">
-                    <input type="password" id="regConfirm" required>
+
+                <div class="field">
                     <label>Confirm Password</label>
-                    <span class="error" id="regConfirmError"></span>
+                    <input type="password" id="regConfirm" required>
+                    <i class="fa-solid fa-eye toggle-eye" onclick="togglePassword('regConfirm', this)"></i>
+                    <div class="error" id="regConfirmError"></div>
                 </div>
-                <span class="success" id="registerSuccess"></span>
+
                 <button type="submit">Register</button>
             </form>
-            <p class="link">Already have an account? <a onclick="switchToLogin()">Login</a></p>
+
+            <div class="switch">
+                Already have an account? <span onclick="showLogin()">Login</span>
+            </div>
         </div>
+
     </div>
 
     <script>
-        function switchToRegister() {
-            document.getElementById('login-form').style.display = 'none';
-            document.getElementById('register-form').style.display = 'block';
-            clearAllErrors();
+        function showRegister() {
+            loginBox.classList.remove("active");
+            registerBox.classList.add("active");
+            clearErrors();
         }
 
-        function switchToLogin() {
-            document.getElementById('register-form').style.display = 'none';
-            document.getElementById('login-form').style.display = 'block';
-            clearAllErrors();
+        function showLogin() {
+            registerBox.classList.remove("active");
+            loginBox.classList.add("active");
+            clearErrors();
         }
 
-        function clearAllErrors() {
-            document.querySelectorAll('.error').forEach(el => el.textContent = '');
-            document.getElementById('registerSuccess').textContent = '';
-            document.getElementById('loginGeneralError').textContent = '';
+        function clearErrors() {
+            document.querySelectorAll(".error").forEach(e => e.textContent = "");
         }
 
-        // Real-time validation (same as before)
-        // ... (keep all the input event listeners from previous version)
-
-        document.getElementById('loginEmail').addEventListener('input', validateLoginEmail);
-        document.getElementById('loginPassword').addEventListener('input', validateLoginPassword);
-        document.getElementById('regName').addEventListener('input', validateRegName);
-        document.getElementById('regEmail').addEventListener('input', validateRegEmail);
-        document.getElementById('regPassword').addEventListener('input', validateRegPassword);
-        document.getElementById('regConfirm').addEventListener('input', checkConfirmPassword);
-
-        function validateLoginEmail() {
-            const val = this.value.trim();
-            const err = document.getElementById('loginEmailError');
-            err.textContent = !val || !/\S+@\S+\.\S+/.test(val) ? 'Please enter a valid email' : '';
+        function togglePassword(id, icon) {
+            const input = document.getElementById(id);
+            input.type = input.type === "password" ? "text" : "password";
+            icon.classList.toggle("fa-eye");
+            icon.classList.toggle("fa-eye-slash");
         }
 
-        function validateLoginPassword() {
-            const val = this.value;
-            const err = document.getElementById('loginPasswordError');
-            err.textContent = !val || val.length < 6 ? 'Password must be at least 6 characters' : '';
-        }
-
-        function validateRegName() {
-            const val = this.value.trim();
-            const err = document.getElementById('regNameError');
-            err.textContent = !val || val.length < 3 ? 'Name must be at least 3 characters' : '';
-        }
-
-        function validateRegEmail() {
-            const val = this.value.trim();
-            const err = document.getElementById('regEmailError');
-            err.textContent = !val || !/\S+@\S+\.\S+/.test(val) ? 'Please enter a valid email' : '';
-        }
-
-        function validateRegPassword() {
-            const val = this.value;
-            const err = document.getElementById('regPasswordError');
-            err.textContent = !val || val.length < 6 ? 'Password must be at least 6 characters' : '';
-            checkConfirmPassword();
-        }
-
-        function checkConfirmPassword() {
-            const password = document.getElementById('regPassword').value;
-            const confirm = document.getElementById('regConfirm').value;
-            const err = document.getElementById('regConfirmError');
-            err.textContent = confirm && password !== confirm ? 'Passwords do not match' : '';
-        }
-
-        // Register
-        document.getElementById('registerForm').addEventListener('submit', function(e) {
+        /* REGISTER */
+        registerForm.addEventListener("submit", e => {
             e.preventDefault();
-            ['regName', 'regEmail', 'regPassword', 'regConfirm'].forEach(id => 
-                document.getElementById(id).dispatchEvent(new Event('input'))
-            );
+            clearErrors();
 
-            const hasError = document.querySelector('#register-form .error').textContent !== '';
-            if (hasError) return;
+            let valid = true;
 
-            const user = {
-                name: document.getElementById('regName').value.trim(),
-                email: document.getElementById('regEmail').value.trim().toLowerCase(),
-                password: document.getElementById('regPassword').value
-            };
+            if (regName.value.trim().length < 3) {
+                regNameError.textContent = "Name must be at least 3 characters";
+                valid = false;
+            }
 
-            localStorage.setItem('user', JSON.stringify(user));
-            document.getElementById('registerSuccess').textContent = 'Registration successful! Redirecting...';
+            if (!/\S+@\S+\.\S+/.test(regEmail.value)) {
+                regEmailError.textContent = "Invalid email";
+                valid = false;
+            }
 
-            setTimeout(() => window.location.href = 'apps/dashboard.html', 1500);
+            if (regPassword.value.length < 6) {
+                regPasswordError.textContent = "Password must be at least 6 characters";
+                valid = false;
+            }
+
+            if (regPassword.value !== regConfirm.value) {
+                regConfirmError.textContent = "Passwords do not match";
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            // Save user
+            localStorage.setItem("user", JSON.stringify({
+                name: regName.value,
+                email: regEmail.value.toLowerCase(),
+                password: regPassword.value
+            }));
+
+            // ✅ SweetAlert success
+            Swal.fire({
+                icon: "success",
+                title: "Registration Successful!",
+                text: "Redirecting to Dashboard...",
+                timer: 1500,
+                showConfirmButton: false
+            }).then(() => {
+                window.location.href = "apps/dashboard.html";
+            });
         });
 
-        // Login
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        /* LOGIN */
+        loginForm.addEventListener("submit", e => {
             e.preventDefault();
-            document.getElementById('loginEmail').dispatchEvent(new Event('input'));
-            document.getElementById('loginPassword').dispatchEvent(new Event('input'));
+            clearErrors();
 
-            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-            const password = document.getElementById('loginPassword').value;
+            let valid = true;
 
-            const stored = localStorage.getItem('user');
+            if (!/\S+@\S+\.\S+/.test(loginEmail.value)) {
+                loginEmailError.textContent = "Invalid email";
+                valid = false;
+            }
+
+            if (loginPassword.value.length < 6) {
+                loginPasswordError.textContent = "Password must be at least 6 characters";
+                valid = false;
+            }
+
+            if (!valid) return;
+
+            const stored = localStorage.getItem("user");
             if (!stored) {
-                document.getElementById('loginGeneralError').textContent = 'No user registered yet.';
+                loginPasswordError.textContent = "No account found";
                 return;
             }
 
             const user = JSON.parse(stored);
-            if (user.email === email && user.password === password) {
-                setTimeout(() => window.location.href = 'apps/dashboard.html', 500);
+
+            if (user.email === loginEmail.value.toLowerCase() &&
+                user.password === loginPassword.value) {
+
+                Swal.fire({
+                    icon: "success",
+                    title: "Login Successful",
+                    text: "Redirecting to Dashboard...",
+                    timer: 1500,
+                    showConfirmButton: false
+                }).then(() => {
+                    window.location.href = "apps/dashboard.html";
+                });
+
             } else {
-                document.getElementById('loginGeneralError').textContent = 'Invalid email or password';
+                loginPasswordError.textContent = "Invalid email or password";
             }
         });
     </script>
+
 </body>
+
 </html>
