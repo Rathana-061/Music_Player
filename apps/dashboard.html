@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Music Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
+    <link rel="stylesheet" href="../css/dashboard.css" />
+  </head>
+  <body>
+    <!-- Full-Width Top Navigation Bar -->
+    <div class="top-nav-full">
+      <div class="nav-left">
+        <img
+          src="/images/logo-music.jpg"
+          alt="My Music App Logo"
+          class="app-logo"
+        />
+        <h2 class="app-name">Audio<span>Lux</span></h2>
+      </div>
+    </div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="profile-section" id="profileToggle">
+        <div class="profile-pic" id="profilePic">S</div>
+        <div class="user-greeting" id="userName">Hello, Susan! 👋</div>
+        <!-- <div class="premium-badge">Premium</div> -->
+      </div>
+      <div class="profile-dropdown" id="profileDropdown">
+        <div class="dropdown-item" id="editProfileItem">Edit Profile</div>
+        <div class="dropdown-item">Account</div>
+        <div class="dropdown-item">Upgrade to Premium</div>
+        <div class="dropdown-item">Download</div>
+        <div class="dropdown-item">Support</div>
+        <div class="dropdown-item">Settings</div>
+        <div class="dropdown-item logout">Log out</div>
+      </div>
+      <div class="nav-menu">
+        <div class="nav-item active" data-section="your-zone">Discover</div>
+        <div class="nav-item" data-section="my-playlist">Library</div>
+      </div>
+      <button class="logout-btn" id="sidebarLogoutBtn">Logout</button>
+    </div>
+
+    <!-- Main Area -->
+    <div class="main-area">
+      <div class="top-bar">
+        <h1 id="page-title">Discover</h1>
+        <input type="text" class="search-bar" placeholder="Search songs..." />
+      </div>
+      <div class="content-wrapper">
+        <div class="left-content">
+          <div id="your-zone" class="content-section active">
+            <div class="section-title">
+              Recommended
+
+              <!-- See More / See Less Button -->
+              <div style="text-align: center; margin: 40px 0">
+                <button
+                  id="seeMoreBtn"
+                  class="upload-btn"
+                  style="background: #1db954"
+                >
+                  See More ▼
+                </button>
+              </div>
+            </div>
+
+            <div class="albums-grid" id="sampleSongsGrid">
+              <!-- Initial 4 visible songs -->
+              <div
+                class="album-item"
+                data-song="../songs/Tena-1.mp3"
+                data-title="បងក្រ"
+                data-artist="Tena"
+                data-cover="https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://i.ytimg.com/vi/G9rJC-cD_hk/sddefault.jpg');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">បងក្រ</div>
+                <div class="album-artist">Tena</div>
+              </div>
+
+              <div
+                class="album-item"
+                data-song="../songs/Vannda-1.mp3"
+                data-title="Time to Rise"
+                data-artist="Vannda"
+                data-cover="https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://i.ytimg.com/vi/BNINcgiZV0s/maxresdefault.jpg');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">Time to Rise</div>
+                <div class="album-artist">Vannda</div>
+              </div>
+
+              <div
+                class="album-item"
+                data-song="../songs/Preab Sovath-1.mp3"
+                data-title="Lady (She's gone)"
+                data-artist="Preab Sovath"
+                data-cover="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRW_veez5yX_YquhpoBdPA3xXIugYP9flIMGQ&s');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">Lady (She's gone)</div>
+                <div class="album-artist">Preab Sovath</div>
+              </div>
+
+              <div
+                class="album-item"
+                data-song="../songs/ស្រដៀងសង្សារ.mp3"
+                data-title="ស្រដៀងសង្សារ"
+                data-artist="Nevrmind Band"
+                data-cover="https://i.ytimg.com/vi/oo4fDJszsZ4/maxresdefault.jpg"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://i.ytimg.com/vi/oo4fDJszsZ4/maxresdefault.jpg');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">ស្រដៀងសង្សារ</div>
+                <div class="album-artist">Nevrmind Band</div>
+              </div>
+
+              <!-- Hidden extra songs (shown when "See More" is clicked) -->
+              <div
+                class="album-item extra-song hidden"
+                data-song="../songs/see you again.mp3"
+                data-title="See you again"
+                data-artist="Wiz Khalifa"
+                data-cover="https://i.ytimg.com/vi/RgKAFK5djSk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAqRAcXvNmNXcNEleJusP3Ljgzqug"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://i.ytimg.com/vi/RgKAFK5djSk/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAqRAcXvNmNXcNEleJusP3Ljgzqug');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">See you again</div>
+                <div class="album-artist">Wiz Khalifa</div>
+              </div>
+
+              <div
+                class="album-item extra-song hidden"
+                data-song="../songs/Home.mp3"
+                data-title="Home"
+                data-artist="Machine Gun Kelly"
+                data-cover="https://i.ytimg.com/vi/IumYMCllMsM/hqdefault.jpg"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://i.ytimg.com/vi/IumYMCllMsM/hqdefault.jpg');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">Home</div>
+                <div class="album-artist">Machine Gun Kelly</div>
+              </div>
+
+              <div
+                class="album-item extra-song hidden"
+                data-song="../songs/Someone You Loved.mp3"
+                data-title="Someone You Loved"
+                data-artist="Lewis Capaldi"
+                data-cover="https://i.ytimg.com/vi/bCuhuePlP8o/sddefault.jpg?v=688b3275"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://i.ytimg.com/vi/bCuhuePlP8o/sddefault.jpg?v=688b3275');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">Someone You Loved</div>
+                <div class="album-artist">Lewis Capaldi</div>
+              </div>
+
+              <div
+                class="album-item extra-song hidden"
+                data-song="../songs/Why Not Me.mp3"
+                data-title="Why Not Me"
+                data-artist="Enrique Iglesias"
+                data-cover="https://i.pinimg.com/564x/d9/50/09/d95009983ed3a7ee227db500e01a1feb.jpg"
+              >
+                <div
+                  class="album-cover"
+                  style="
+                    background-image: url('https://i.pinimg.com/564x/d9/50/09/d95009983ed3a7ee227db500e01a1feb.jpg');
+                  "
+                >
+                  <div class="play-hover-btn">▶</div>
+                </div>
+                <div class="album-title">Why Not Me</div>
+                <div class="album-artist">Enrique Iglesias</div>
+              </div>
+            </div>
+
+            <!-- Featured Artists -->
+            <div id="artistsSection">
+              <div class="section-title">
+                Featured Artists
+                <button id="seeMoreArtistsBtn" class="upload-btn">
+                  See More ▼
+                </button>
+              </div>
+              <div class="artists-grid" id="artistsGrid">
+                <div class="artist-item" data-artist="Vanda">
+                  <div
+                    class="artist-avatar"
+                    style="
+                      background-image: url('https://www.top10asia.org/wp-content/uploads/2022/09/301590217_802401490937910_8824734863151066433_n.jpg');
+                    "
+                  ></div>
+                  <div class="artist-name">Vanda</div>
+                  <div class="artist-genre">Pop • Cambodia</div>
+                </div>
+                <div class="artist-item" data-artist="Tena">
+                  <div
+                    class="artist-avatar"
+                    style="
+                      background-image: url('https://i.scdn.co/image/ab6761610000e5ebb267fa0c58a49a460fbb44cd');
+                    "
+                  ></div>
+                  <div class="artist-name">Tena</div>
+                  <div class="artist-genre">Pop • Cambodia</div>
+                </div>
+                <div class="artist-item" data-artist="Preab Sovath">
+                  <div
+                    class="artist-avatar"
+                    style="
+                      background-image: url('https://i.scdn.co/image/ab67616d00001e02e5c32e2fa4e4b8b7bc25225f');
+                    "
+                  ></div>
+                  <div class="artist-name">Preab Sovath</div>
+                  <div class="artist-genre">Pop • Cambodia</div>
+                </div>
+
+                <!-- Extra artists - hidden initially -->
+                <div
+                  class="artist-item extra-artist hidden"
+                  data-artist="Chhom Nimol"
+                >
+                  <div
+                    class="artist-avatar"
+                    style="
+                      background-image: url('https://www.thefamouspeople.com/profiles/thumbs/aok-sokunkanha-1.jpg');
+                    "
+                  ></div>
+                  <div class="artist-name">Chhom Nimol</div>
+                  <div class="artist-genre">Pop • Cambodia</div>
+                </div>
+                <div
+                  class="artist-item extra-artist hidden"
+                  data-artist="Laura Mam"
+                >
+                  <div
+                    class="artist-avatar"
+                    style="
+                      background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxUQac5wd-ABCXlKpgcUdqlh3GxrejpVZ5ag&s');
+                    "
+                  ></div>
+                  <div class="artist-name">Laura Mam</div>
+                  <div class="artist-genre">Pop • Cambodia</div>
+                </div>
+                <div
+                  class="artist-item extra-artist hidden"
+                  data-artist="Sokha Teap"
+                >
+                  <div
+                    class="artist-avatar"
+                    style="
+                      background-image: url('https://i.ytimg.com/vi/MOFkqeHt-O0/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AH-CYAC0AWKAgwIABABGCkgLyh_MA8=&rs=AOn4CLBw-yLYagdKGCCzF6b41oKsZyjUsQ');
+                    "
+                  ></div>
+                  <div class="artist-name">Sokha Teap</div>
+                  <div class="artist-genre">Pop • Cambodia</div>
+                </div>
+                <div
+                  class="artist-item extra-artist hidden"
+                  data-artist="Kak Channthy"
+                >
+                  <div
+                    class="artist-avatar"
+                    style="
+                      background-image: url('https://i.ytimg.com/vi/s2RNS8yN0Lo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAO4HFhM_4dsKM_ROgV4i1j0KO49w');
+                    "
+                  ></div>
+                  <div class="artist-name">Kak Channthy</div>
+                  <div class="artist-genre">Pop • Cambodia</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Artist Detail View -->
+            <div class="artist-detail-view" id="artistDetailView">
+              <button class="back-to-artists" id="backToArtistsBtn">
+                ← Back to Artists
+              </button>
+              <div class="artist-header" id="artistHeader"></div>
+              <div class="section-title">Popular Songs</div>
+              <div class="albums-grid" id="artistSongsGrid"></div>
+            </div>
+
+            <div class="section-title">
+              Your Uploaded Music
+              <button class="upload-btn" id="uploadBtn">+ Upload Song</button>
+            </div>
+            <table class="uploaded-table" id="uploadedSongs">
+              <thead>
+                <tr>
+                  <th>Cover</th>
+                  <th>Title</th>
+                  <th>Artist</th>
+                </tr>
+              </thead>
+              <tbody id="uploadedSongsBody">
+                <tr>
+                  <td
+                    colspan="3"
+                    style="text-align: center; color: #888; padding: 40px"
+                  >
+                    No uploaded songs yet. Click "Upload Song" to add some!
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="my-playlist" class="content-section">
+            <div class="section-title">
+              My Playlists
+              <button class="upload-btn" id="createPlaylistBtn">
+                + New Playlist
+              </button>
+            </div>
+            <div class="albums-grid" id="playlistsGrid">
+              <p
+                style="
+                  grid-column: 1 / -1;
+                  text-align: center;
+                  color: #888;
+                  padding: 40px;
+                "
+              >
+                No playlists yet. Create one!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-content">
+          <div class="recent-right-title">Recent</div>
+          <div class="recent-right-list" id="recentList">
+            <p style="text-align: center; color: #888; padding: 20px">
+              No recent songs
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player Bar -->
+      <div class="player-bar">
+        <div class="player-left">
+          <div class="current-cover-small" id="currentCover"></div>
+          <div>
+            <div class="current-song-small" id="currentSong">
+              No song playing
+            </div>
+            <div class="current-artist-small" id="currentArtist">-</div>
+          </div>
+        </div>
+        <div class="player-center">
+          <button class="player-control-btn" id="prevBtn">⏮</button>
+          <button class="play-pause-large" id="playPauseBtn">▶</button>
+          <button class="player-control-btn" id="nextBtn">⏭</button>
+        </div>
+        <div class="progress-section" style="margin-left: 50px">
+          <span class="time-label" id="currentTime">0:00</span>
+          <div class="progress-bar-thin" id="progressBar">
+            <div class="progress-fill-thin" id="progressFill"></div>
+          </div>
+          <span class="time-label" id="duration">0:00</span>
+        </div>
+        <div class="player-right">
+          <div class="volume-control">
+            <span style="font-size: 20px">🔊</span>
+            <input
+              type="range"
+              class="volume-slider-thin"
+              id="volumeSlider"
+              min="0"
+              max="100"
+              value="70"
+            />
+          </div>
+          <button
+            style="margin: 0 20px"
+            class="player-control-btn add-to-playlist-btn"
+            id="addToPlaylistBtn"
+          >
+            +
+          </button>
+          <button class="expand-btn" id="expandBtn">⛶</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal-overlay" id="addToPlaylistModal">
+      <div class="add-playlist-content">
+        <h3 class="add-playlist-title">Add to Playlist</h3>
+        <div class="add-playlist-current-song" id="currentSongInModal">
+          No song selected
+        </div>
+        <div class="playlist-list" id="playlistListInModal">
+          <div class="no-playlists">No playlists available</div>
+        </div>
+        <button class="modal-btn cancel-btn" id="closePlaylistModal">
+          Cancel
+        </button>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="playlistModal">
+      <div class="modal-content">
+        <h3 id="modalTitle">Create New Playlist</h3>
+        <div class="playlist-cover-preview" id="coverPreview">🎵</div>
+        <button class="change-cover-btn" id="changeCoverBtn">
+          Change Cover Image
+        </button>
+        <input
+          type="text"
+          class="modal-input"
+          id="playlistNameInput"
+          placeholder="Enter playlist name..."
+          maxlength="50"
+        />
+        <div class="modal-buttons">
+          <button class="modal-btn cancel-btn" id="cancelBtn">Cancel</button>
+          <button class="modal-btn create-btn" id="saveBtn">Create</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-overlay" id="deletePlaylistModal">
+      <div class="modal-content">
+        <h3 style="color: #e74c3c">Delete Playlist?</h3>
+        <p
+          id="deletePlaylistName"
+          style="margin: 20px 0; font-size: 16px; opacity: 0.9"
+        >
+          Are you sure? This action cannot be undone.
+        </p>
+        <div class="modal-buttons">
+          <button class="modal-btn cancel-btn" id="cancelDeleteBtn">
+            Cancel
+          </button>
+          <button class="modal-btn delete-btn" id="confirmDeleteBtn">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="edit-profile-modal" id="editProfileModal">
+      <div class="edit-profile-content">
+        <h2 style="margin-bottom: 20px">Edit Profile</h2>
+        <div class="edit-profile-pic-preview" id="editProfilePicPreview">S</div>
+        <button class="change-pic-btn" id="changeProfilePicBtn">
+          Change Photo
+        </button>
+        <input
+          type="text"
+          class="edit-name-input"
+          id="editNameInput"
+          placeholder="Your name"
+          maxlength="30"
+        />
+        <div class="modal-buttons" style="margin-top: 30px">
+          <button class="modal-btn cancel-btn" id="cancelEditBtn">
+            Cancel
+          </button>
+          <button class="modal-btn save-btn" id="saveProfileBtn">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hidden Inputs -->
+    <input
+      type="file"
+      id="songInput"
+      accept="audio/*"
+      style="display: none"
+      multiple
+    />
+    <input
+      type="file"
+      id="playlistCoverInput"
+      accept="image/*"
+      style="display: none"
+    />
+    <input
+      type="file"
+      id="profilePicInput"
+      accept="image/*"
+      style="display: none"
+    />
+
+    <!-- Big Player Overlay -->
+    <div class="big-player-overlay" id="bigPlayerOverlay">
+      <div class="big-player-content">
+        <div class="big-player-close" id="bigPlayerClose">×</div>
+        <div class="big-album-cover" id="bigAlbumCover"></div>
+        <div class="big-song-title" id="bigSongTitle">No song</div>
+        <div class="big-song-artist" id="bigSongArtist">-</div>
+        <div class="big-progress-section">
+          <span class="big-time-label" id="bigCurrentTime">0:00</span>
+          <div class="big-progress-bar" id="bigProgressBar">
+            <div class="big-progress-fill" id="bigProgressFill"></div>
+          </div>
+          <span class="big-time-label" id="bigDuration">0:00</span>
+        </div>
+        <div class="big-player-controls">
+          <button class="big-player-btn" id="bigPrevBtn">⏮</button>
+          <div class="big-play-pause" id="bigPlayPauseBtn">▶</div>
+          <button class="big-player-btn" id="bigNextBtn">⏭</button>
+        </div>
+      </div>
+    </div>
+
+    <audio id="audioPlayer" preload="metadata"></audio>
+
+    <script src="../js/dashboard.js"></script>
+  </body>
+</html>
